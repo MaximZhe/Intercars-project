@@ -57,7 +57,7 @@ const SearchForm = ({ className }: { className: string }) => {
                 //     departure
                     
                 // };
-                const response = await axios.get('http://api.intercars-tickets.com/api/v1/GetByName',{
+                const response = await axios.get('http://api.intercars-tickets.com/api/v1/GetByName?name=Minsk',{
      
                 });
                 // const response = await axios.post('http://api.intercars-tickets.com/api/v1/GetByName?name=Minsk', dataToSend);
