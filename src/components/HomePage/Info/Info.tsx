@@ -1,4 +1,3 @@
-import React from 'react';
 import BusImage from '../../../assets/images/Bus.png';
 import { Link } from 'react-router-dom';
 import './Info.scss';

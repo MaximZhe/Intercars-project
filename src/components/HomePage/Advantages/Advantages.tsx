@@ -1,4 +1,3 @@
-import React from 'react';
 import WalletIcon from '../../../assets/icons/wallet-icon.svg';
 import TicketIcon from '../../../assets/icons/ticket-icon.svg';
 import RoadIcon from '../../../assets/icons/road-icon.svg';

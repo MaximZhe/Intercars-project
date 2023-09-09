@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ArrowDown } from '../../../assets/icons/Arrow Icon.svg'
 

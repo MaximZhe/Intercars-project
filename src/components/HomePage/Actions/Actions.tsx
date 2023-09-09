@@ -1,6 +1,4 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import ActionImg from '../../../assets/images/action-block-icon.png'
 import './Actions.scss';
 const Actions = () => {
     return (

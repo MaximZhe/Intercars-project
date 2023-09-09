@@ -53,12 +53,10 @@ const SearchForm = ({ className }: { className: string }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const dataToSend = {
-                    departure
+                // const dataToSend = {
+                //     departure
                     
-                };
-                const apiURL = 'http://api.intercars-tickets.com/api/v1/GetByName?name=Minsk';
-const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+                // };
                 const response = await axios.get('http://api.intercars-tickets.com/api/v1/GetByName',{
      
                 });

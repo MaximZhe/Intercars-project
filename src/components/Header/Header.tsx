@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from '../../assets/icons/Logo.svg';
 import { ReactComponent as UserIcon } from '../../assets/icons/user.svg';
 import { ReactComponent as SupportIcon } from '../../assets/icons/support.svg'

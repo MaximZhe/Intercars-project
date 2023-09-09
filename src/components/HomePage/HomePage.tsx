@@ -1,8 +1,8 @@
-import React from 'react';
+
 import Menu from '../Header/Menu/Menu';
 import SearchForm from '../SearchForm/SearchForm';
 import './HomePage.scss';
-import { Link } from 'react-router-dom';
+
 import Actions from './Actions/Actions';
 import Info from './Info/Info';
 import Advantages from './Advantages/Advantages';
