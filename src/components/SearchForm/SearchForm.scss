@@ -1,0 +1,130 @@
+.form-search {
+  display: grid;
+  grid-template-columns:  max(271px) max(271px) max(271px) 1fr;
+  grid-column-gap: 2px;
+  &__wrapper {
+    max-width: 271px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    &:first-child > input {
+      border-radius: 6px 0px 0px 6px;
+    }
+    &:last-child {
+      display: flex;
+      justify-content: start;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 24px;
+    }
+    &:nth-child(2) > input{
+      padding-left: 20px;
+    }
+  }
+  &__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 8px;
+
+    & > input {
+      border-radius: 0px 6px 6px 0px;
+      position: relative;
+      margin-top: 0;
+    }
+    & > input[name="departure"] {
+      border-radius: 6px 0px 0px 6px;
+      position: relative;
+    }
+  }
+  &__image {
+    position: absolute;
+    right: -16px;
+    width: 33px;
+    height: 32px;
+  }
+  &__icon {
+    position: absolute;
+    cursor: pointer;
+    right: 8px;
+  }
+  &__label {
+    color: #ffffff;
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+  }
+  &__input {
+    background: #ffffff;
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding-left: 12px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9fb1c9;
+    &::placeholder {
+      color: #9fb1c9;
+    }
+  }
+
+  &__sample {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+  }
+  &__text {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  &__btn {
+    font-size: 14px;
+    line-height: 18px;
+    background: none;
+    color: #ffffff;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+    &:hover {
+      color: #000000;
+    }
+  }
+  &__calendar {
+  }
+  &__btn-submit {
+    background: #e23f35;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #ffffff;
+    max-width: 160px;
+    height: 56px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6px;
+    border-radius: 6px;
+  }
+}
+.react-calendar {
+  max-width: 247px;
+}
+.react-calendar__navigation {
+  height: 25px;
+}
+.react-calendar__navigation button {
+  min-width: 30px;
+}
+.react-calendar__tile {
+  padding: 5px 6.6667px;
+}
+.react-calendar__tile--now {
+  background: #ffff76;
+}

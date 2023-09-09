@@ -1,0 +1,33 @@
+.advantages {
+    margin-top: 48px;
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 32px;
+  }
+  &__item {
+    display: flex;
+    padding: 32px 24px;
+    flex-direction: column;
+    border-radius: 12px;
+    background: #ffffff;
+  }
+  &__title {
+    margin-top: 48px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  &__text {
+    margin-top: 16px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+  }
+  &__icon {
+    max-width: 40px;
+    width: 100%;
+    height: auto;
+  }
+}

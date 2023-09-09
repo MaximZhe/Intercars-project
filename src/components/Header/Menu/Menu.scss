@@ -1,0 +1,27 @@
+.nav {
+  display: flex;
+  padding: 16px 0px;
+  background: rgba(0, 94, 228, 0.3);
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 0 48px;
+  justify-content: end;
+  &__item {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    background: none;
+  }
+  &__icon {
+    margin-left: 4px;
+    width: 16px;
+    height: 16px;
+    fill: #ffffff;
+    transform: rotate(90deg);
+  }
+}

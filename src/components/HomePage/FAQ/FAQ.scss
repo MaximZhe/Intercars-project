@@ -1,0 +1,28 @@
+.accordion{
+    background:#FFFFFF;
+    padding-top: 48px;
+    &__item{
+
+    }
+    &__inner{
+
+    }
+    &__wrapper{
+        width: 24px;
+        height: 24px;
+        border-radius:50px;
+        background:#F0F3F6;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+    }
+    &__icon{
+
+    }
+    &__title{
+
+    }
+    &__text{
+
+    }
+}
