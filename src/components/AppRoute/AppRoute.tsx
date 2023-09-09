@@ -7,7 +7,7 @@ import PayPage from '../PayPage/PayPage';
 const AppRoute = () => {
     return (
         <Routes>
-            <Route path='/' element={<HomePage/>}/>
+            <Route path='/Intercars/' element={<HomePage/>}/>
             <Route path='/sales' element={<SalesPage/>}/>
             <Route path='/rules' element={<RulesPage/>}/>
             <Route path='/pay' element={<PayPage/>}/>
