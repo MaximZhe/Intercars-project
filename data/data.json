@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "time": {
+      "start": "21:00",
+      "finish": "07:00"
+    },
+    "travel time": {
+      "hours": 33,
+      "minutes": 10
+    },
+    "city": {
+      "start": "Минск",
+      "finish": "Берлин"
+    },
+    "station": {
+      "start": "Центральный автовокзал, ул. Бобруйская, 6",
+      "finish": "Bus Station (ZOB) \"Am Funkturm\" on Masurenallee"
+    },
+    "company": "ECOLINES",
+    "comfort": {
+      "internet": true,
+      "film": true,
+      "charging the device": true
+    },
+    "price": 1698,
+    "number of seats": 28,
+    "sale of seats": 5,
+    "transfer": 0
+  },
+  {
+    "id": 2,
+    "time": {
+      "start": "14:00",
+      "finish": "08:00"
+    },
+    "travel time": {
+      "hours": 33,
+      "minutes": 50
+    },
+    "city": {
+      "start": "Минск",
+      "finish": "Берлин"
+    },
+    "station": {
+      "start": "Центральный автовокзал, ул. Бобруйская, 6",
+      "finish": "Bus Station (ZOB) \"Am Funkturm\" on Masurenallee"
+    },
+    "company": "ECOLINES",
+    "comfort": {
+      "internet": true,
+      "film": true,
+      "charging the device": true
+    },
+    "price": 1700,
+    "number of seats": 28,
+    "sale of seats": 5,
+    "transfer" : 1
+  }
+]
