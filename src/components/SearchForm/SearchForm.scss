@@ -110,6 +110,11 @@
     align-items: center;
     margin-bottom: 6px;
     border-radius: 6px;
+    transition: .5s ease-in-out;
+    &:hover{
+      
+      background:#b7170d;
+    }
   }
 }
 .react-calendar {

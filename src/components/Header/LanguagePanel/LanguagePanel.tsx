@@ -3,7 +3,6 @@ import { useState } from 'react';
 const LanguagePanel = () => {
     const [isOpen, setIsOpen] = useState(false); // Состояние для открытия/закрытия выпадающего списка
     const [selectedLanguage, setSelectedLanguage] = useState('RUS'); // Начальное значение языка
-
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
@@ -21,13 +20,19 @@ const LanguagePanel = () => {
                 </div>
                 {isOpen && (
                     <div className="dropdown-menu">
-                        <button type='button' className="dropdown-item" onClick={() => handleLanguageChange('RUS')}>
+                        <button type='button'
+                            className={`dropdown-item ${selectedLanguage === 'RUS' ? 'active' : ''}`}
+                            onClick={() => handleLanguageChange('RUS')}>
                             Русский
                         </button>
-                        <button type='button' className="dropdown-item" onClick={() => handleLanguageChange('EN')}>
+                        <button type='button'
+                            className={`dropdown-item ${selectedLanguage === 'EN' ? 'active' : ''}`}
+                            onClick={() => handleLanguageChange('EN')}>
                             English
                         </button>
-                        <button type='button' className="dropdown-item" onClick={() => handleLanguageChange('PL')}>
+                        <button type='button'
+                            className={`dropdown-item ${selectedLanguage === 'PL' ? 'active' : ''}`}
+                            onClick={() => handleLanguageChange('PL')}>
                             Polski
                         </button>
                     </div>
