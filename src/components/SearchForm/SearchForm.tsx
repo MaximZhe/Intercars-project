@@ -8,6 +8,7 @@ import ListRates from '../ListRates/ListRates';
 import './SearchForm.scss';
 import { ReactComponent as CalendarIcon } from '../../assets/icons/calendar.svg';
 import { ReactComponent as ArrowForm } from '../../assets/icons/arrow-form.svg';
+
 const SearchForm = ({ className }: { className: string }) => {
     const defaultCityForm = {
         Minsk: 'Минск',

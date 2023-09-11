@@ -3,15 +3,16 @@ import { ReactComponent as UserIcon } from '../../assets/icons/user.svg';
 import { ReactComponent as SupportIcon } from '../../assets/icons/support.svg'
 import './Header.scss'
 import LanguagePanel from './LanguagePanel/LanguagePanel';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
         <header className='header' >
             <div className='container-fluid'>
                 <div className='header__wrapper'>
-                    <a href='' className='header-logo'>
+                    <Link to='' className='header-logo'>
                         <img src={logo} width={225} height={32} alt='' />
-                    </a>
+                    </Link>
                     <div className='user'>
                         <UserIcon className='user__icon' />
                         <p className='user__text'>Личный кабинет</p>

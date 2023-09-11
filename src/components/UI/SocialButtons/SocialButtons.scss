@@ -1,0 +1,13 @@
+.social-buttons{
+    display: flex;
+    flex-direction: column;
+    &__wrapper{
+        display: flex;
+    }
+    &__btn{
+
+    }
+    &__icon{
+        fill:#9FB1C9;
+    }
+}

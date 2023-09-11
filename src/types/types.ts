@@ -28,3 +28,7 @@ export interface ITariffData {
   "sale of seats": number;
   transfer: number;
 }
+export interface IRouteItem {
+  id:number,
+  value:string
+}
