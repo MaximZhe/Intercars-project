@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { ReactComponent as ArrowIcon } from '../../../assets/icons/Arrow Icon.svg';
+import { IAccordionItem } from '@/types/types';
 import './FAQ.scss';
-export interface AccordionItem {
-    id: number,
-    title: string;
-    content: string;
-}
+
 
 interface AccordionProps {
-    itemsLeft: AccordionItem[];
-    itemsRight: AccordionItem[];
+    itemsLeft: IAccordionItem[];
+    itemsRight: IAccordionItem[];
 }
 
 const Accordion: React.FC<AccordionProps> = ({ itemsLeft, itemsRight }) => {

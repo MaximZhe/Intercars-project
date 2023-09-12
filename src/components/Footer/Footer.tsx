@@ -4,8 +4,8 @@ import SocialButtons from '../UI/SocialButtons/SocialButtons';
 import Application from './Application/Application';
 import './Footer.scss';
 import { IRouteItem } from '../../types/types';
-import { ReactComponent as ArrowRight } from '../../assets/icons/arrow-right-blue.svg';
-import { ReactComponent as ArrowIcon } from '../../assets/icons/Arrow Icon.svg';
+import { ReactComponent as ArrowRight } from '@assets/icons/arrow-right-blue.svg';
+import { ReactComponent as ArrowIcon } from '@assets/icons/Arrow Icon.svg';
 import PaymentOption from '../UI/PaymentOption/PaymentOption';
 interface IRoutesList {
     routes: IRouteItem[],
@@ -24,7 +24,7 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                             <h3 className="footer__title">
                                 Контакты
                             </h3>
-                            <ul className='footer-contacts__list'>
+                            <ul className='footer__list  footer-contacts__list'>
                                 <li className='footer-contacts__item'>
                                     <a href='tel:+74993508016' className='footer-contacts__phone'>
                                         +7 499 350 80 16
@@ -55,10 +55,10 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                                 Маршруты
                                 <ArrowIcon className={`footer-icon__mobail ${isOpenRoutes ? 'active' : ''}`} />
                             </h3>
-                            <ul className='footer-routes__list'>
+                            <ul className='footer__list footer-routes__list'>
                                 {routes.map((item) =>
-                                    <li key={item.id} className=''>
-                                        <Link to={`/route/${item.id}`} className='rfooter-routes__item'>{item.value}</Link>
+                                    <li key={item.id} className='footer-routes__item'>
+                                        <Link to={`/route/${item.id}`} className='footer-routes__link'>{item.value}</Link>
                                     </li>)}
                             </ul>
                             <Link to='' className='footer-routes__more'>
@@ -73,7 +73,7 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                                 <ArrowIcon className={`footer-icon__mobail ${isOpenInfo ? 'active' : ''}`} />
                             </h3>
                             <nav className='footer-nav__wrapper'>
-                                <ul className='footer-nav__menu'>
+                                <ul className='footer__list  footer-nav__menu'>
                                     <li className='footer-nav__item'>
                                         <Link to='/' className='footer-nav__link'>
                                             Главная

@@ -32,3 +32,13 @@ export interface IRouteItem {
   id:number,
   value:string
 }
+export interface IAccordionItem {
+  id: number,
+  title: string;
+  content: string;
+}
+export interface ISliderRoute {
+  id: number,
+  value:string,
+  price:number
+}
