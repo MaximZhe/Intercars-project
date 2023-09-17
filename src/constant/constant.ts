@@ -36,7 +36,7 @@ export const sliderRoutesInternational:ISliderRoute[] = [
     {id:1, value:'Варшава', price:2653},
     {id:2, value:'Берлин', price:1460},
     {id:3, value:'Таллин', price:1365},
-    {id:4, value:'Казань', price:2700},
+    {id:4, value:'Кунас', price:2700},
     {id:5, value:'Вильнюс', price:1840},
     {id:6, value:'Рига', price:2200},
     {id:7, value:'Стокгольм', price:1980},

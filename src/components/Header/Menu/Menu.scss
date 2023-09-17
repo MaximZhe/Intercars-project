@@ -1,6 +1,5 @@
 .nav {
   display: flex;
-  padding: 16px 0px;
   background: rgba(0, 94, 228, 0.3);
 }
 .menu {
@@ -8,6 +7,13 @@
   align-items: center;
   gap: 0 48px;
   justify-content: end;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 190px;
+    width: 100%;
+  }
   &__item {
     font-size: 16px;
     line-height: 24px;
@@ -16,6 +22,23 @@
     display: flex;
     align-items: center;
     background: none;
+    padding: 16px 0px;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      color: #6a85ab;
+    }
+    &[type="button"] {
+      position: relative;
+      transition: 0.3s ease-in-out;
+      &.active > svg {
+        transform: rotate(270deg);
+        fill: #6a85ab;
+      }
+      &.active ~ .menu-dropdown {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
   &__icon {
     margin-left: 4px;
@@ -23,5 +46,73 @@
     height: 16px;
     fill: #ffffff;
     transform: rotate(90deg);
+  }
+}
+.menu-dropdown {
+  position: absolute;
+  top: 56px;
+  display: none;
+  gap: 12px 0;
+  padding-top: 1px;
+  transition: 0.3s ease-in-out;
+  &__link {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    background: none;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      color: #6a85ab;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .nav {
+    background: #f0f3f6;
+    padding: 24px 12px;
+    transition: 3s ease-in-out;
+    &.hide{
+      display: none;
+    }
+    &.show{
+      display: flex;
+    }
+  }
+  .menu {
+    margin-top: 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px 0;
+    justify-content: inherit;
+    &__item {
+      font-size: 18px;
+      font-weight: 400;
+      color: #0243a6;
+      padding: 0;
+    }
+    &__icon {
+      fill: #0243a6;
+    }
+    &__wrapper {
+      max-width: 100%;
+      width: auto;
+    }
+  }
+  .menu-dropdown {
+    position: relative;
+    top: 0;
+    &__link {
+      color: #0243a6;
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .header-logo {
+    max-width: 112px;
   }
 }

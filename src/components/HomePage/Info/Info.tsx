@@ -1,6 +1,7 @@
 import BusImage from '../../../assets/images/Bus.png';
 import { Link } from 'react-router-dom';
 import './Info.scss';
+
 const Info = () => {
     return (
         <section className='info'>

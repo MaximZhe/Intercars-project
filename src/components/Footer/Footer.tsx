@@ -4,9 +4,9 @@ import SocialButtons from '../UI/SocialButtons/SocialButtons';
 import Application from './Application/Application';
 import './Footer.scss';
 import { IRouteItem } from '../../types/types';
-import { ReactComponent as ArrowRight } from '@assets/icons/arrow-right-blue.svg';
 import { ReactComponent as ArrowIcon } from '@assets/icons/Arrow Icon.svg';
 import PaymentOption from '../UI/PaymentOption/PaymentOption';
+import ButtonRoutes from '../UI/Button/ButtonRoutes/ButtonRoutes';
 interface IRoutesList {
     routes: IRouteItem[],
 }
@@ -14,6 +14,7 @@ interface IRoutesList {
 const Footer: FC<IRoutesList> = ({ routes }) => {
     const [isOpenRoutes, setIsOpenRoutes] = useState(false);
     const [isOpenInfo, setIsOpenInfo] = useState(false);
+
     return (
         <footer className="footer">
             <div className='container-fluid'>
@@ -49,7 +50,7 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                                 twitter={'https://'}
                                 vk={'https://'} />
                         </div>
-                        <div className='footer-routes'>
+                        <div className={`footer-routes ${isOpenRoutes ? 'active' : ''}`}>
                             <h3 className='footer__title'
                                 onClick={() => setIsOpenRoutes(prev => !prev)}>
                                 Маршруты
@@ -61,16 +62,13 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                                         <Link to={`/route/${item.id}`} className='footer-routes__link'>{item.value}</Link>
                                     </li>)}
                             </ul>
-                            <Link to='' className='footer-routes__more'>
-                                Все маршруты
-                                <ArrowRight className='footer-routes__icon' />
-                            </Link>
+                            <ButtonRoutes className='footer-routes__more'/>
                         </div>
-                        <div className='footer-nav'>
+                        <div className={`footer-nav ${isOpenInfo ? 'active' : ''}`}>
                             <h3 className='footer__title'
-                                onClick={() => setIsOpenRoutes(prev => !prev)}>
+                                onClick={() => setIsOpenInfo(prev => !prev)}>
                                 Информация
-                                <ArrowIcon className={`footer-icon__mobail ${isOpenInfo ? 'active' : ''}`} />
+                                <ArrowIcon className={`footer-icon__mobail`} />
                             </h3>
                             <nav className='footer-nav__wrapper'>
                                 <ul className='footer__list  footer-nav__menu'>
@@ -117,6 +115,11 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                                 </ul>
                             </nav>
                         </div>
+                        <SocialButtons
+                                className={'footer-social mobail'}
+                                telegram={'https://'}
+                                twitter={'https://'}
+                                vk={'https://'} />
                     </div>
                     <div className='footer__bottom'>
                         <div className='footer-company'>

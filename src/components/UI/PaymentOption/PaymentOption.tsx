@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { ReactComponent as VisaIcon } from '../../../assets/icons/visa-card.svg';
 import { ReactComponent as MasterCardIcon } from '../../../assets/icons/master-card.svg';
 import { ReactComponent as MirIcon } from '../../../assets/icons/mir-card.svg';

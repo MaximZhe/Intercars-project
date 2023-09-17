@@ -9,12 +9,9 @@ import Advantages from './Advantages/Advantages';
 import Accordion from './FAQ/FAQ';
 
 import Footer from '../Footer/Footer';
-import { routesItems,accordionItemsLeft,accordionItemsRight } from '@/constant/constant';
 import Slider from '../UI/Slider/Slider';
+import { routesItems,accordionItemsLeft,accordionItemsRight } from '@/constant/constant';
 
-const data = {
-    
-}
 const HomePage = () => {
     return (
         <div >

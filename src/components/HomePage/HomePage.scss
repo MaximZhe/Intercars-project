@@ -21,3 +21,40 @@
     margin-top: 64px;
   }
 }
+
+@media (max-width: 991px) {
+  
+}
+@media (max-width: 860px) {
+
+}
+@media (max-width: 768px) {
+ .offer{
+  &__form{
+    flex-direction: column;
+  }
+ }
+}
+@media (max-width: 650px) {
+  
+}
+@media (max-width: 600px) {
+  .offer{
+    &__inner{
+      margin-top: 0;
+    }
+    &__wrapper{
+      padding-bottom: 54px;
+    }
+    &__title{
+      font-size: 30px;
+      line-height: 36px;
+      max-width: 100%;
+      padding-top: 54px;
+    }
+  }
+  
+}
+@media (max-width: 480px) {
+  
+}

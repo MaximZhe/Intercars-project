@@ -1,38 +1,39 @@
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setLanguageValue, setIsToggleMenu } from '@/redux/slice/languageSlice';
 import { useState } from 'react';
 
 const LanguagePanel = () => {
-    const [isOpen, setIsOpen] = useState(false); // Состояние для открытия/закрытия выпадающего списка
-    const [selectedLanguage, setSelectedLanguage] = useState('RUS'); // Начальное значение языка
+
+    const { language, isOpen } = useAppSelector(state => state.languageReduser);
+    const dispatch = useAppDispatch();
     const toggleDropdown = () => {
-        setIsOpen(!isOpen);
+        dispatch(setIsToggleMenu(true))
     };
-
-    const handleLanguageChange = (language: string) => {
-        setSelectedLanguage(language);
-        setIsOpen(false);
-    };
-
+    const handleButtonClick = (value:string) => {
+        dispatch(setLanguageValue(value));
+        dispatch(setIsToggleMenu(false));
+    }
     return (
         <div className="header__dropdown">
             <div className={`dropdown ${isOpen ? 'open' : ''}`}>
                 <div className="dropdown__language" onClick={toggleDropdown}>
-                    {selectedLanguage}
+                    {language}
                 </div>
                 {isOpen && (
                     <div className="dropdown-menu">
                         <button type='button'
-                            className={`dropdown-item ${selectedLanguage === 'RUS' ? 'active' : ''}`}
-                            onClick={() => handleLanguageChange('RUS')}>
+                            className={`dropdown-item ${language === 'RUS' ? 'active' : ''}`}
+                            onClick={() => handleButtonClick('RUS')}>
                             Русский
                         </button>
                         <button type='button'
-                            className={`dropdown-item ${selectedLanguage === 'EN' ? 'active' : ''}`}
-                            onClick={() => handleLanguageChange('EN')}>
+                            className={`dropdown-item ${language === 'EN' ? 'active' : ''}`}
+                            onClick={() => handleButtonClick('EN')}>
                             English
                         </button>
                         <button type='button'
-                            className={`dropdown-item ${selectedLanguage === 'PL' ? 'active' : ''}`}
-                            onClick={() => handleLanguageChange('PL')}>
+                            className={`dropdown-item ${language === 'PL' ? 'active' : ''}`}
+                            onClick={() => handleButtonClick('PL')}>
                             Polski
                         </button>
                     </div>

@@ -1,9 +1,9 @@
 .form-search {
-  display: grid;
-  grid-template-columns:  max(271px) max(271px) max(271px) 1fr;
+  display: flex;
   grid-column-gap: 2px;
   &__wrapper {
     max-width: 271px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -16,8 +16,11 @@
       flex-direction: row;
       align-items: center;
       margin-left: 24px;
+      height: 56px;
+      margin-top: 20px;
+      max-width: 160px;
     }
-    &:nth-child(2) > input{
+    &:nth-child(2) > input {
       padding-left: 20px;
     }
   }
@@ -95,7 +98,7 @@
       color: #000000;
     }
   }
-  
+
   &__btn-submit {
     background: #e23f35;
     font-size: 16px;
@@ -108,17 +111,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 6px;
     border-radius: 6px;
-    transition: .5s ease-in-out;
-    &:hover{
-      
-      background:#b7170d;
+    transition: 0.5s ease-in-out;
+    &:hover {
+      background: #b7170d;
     }
   }
 }
 .react-calendar {
-  max-width: 247px;
+  max-width: 271px;
+  width: 100%;
 }
 .react-calendar__navigation {
   height: 25px;
@@ -131,4 +133,70 @@
 }
 .react-calendar__tile--now {
   background: #ffff76;
+}
+
+@media (max-width: 768px) {
+  .form-search {
+    &__wrapper {
+      max-width: 100%;
+      position: relative;
+      flex-direction: row;
+      align-items: center;
+      &:nth-child(2) > input {
+        padding-left: 12px;
+      }
+      &:last-child {
+        max-width: 100%;
+        margin-left: 0;
+        margin-top: 24px;
+        justify-content: center;
+      }
+    }
+    &__label {
+      position: absolute;
+      color: #9fb1c9;
+      right: 12px;
+      z-index: 10;
+      padding-top: 4px;
+    }
+    &__input {
+      margin-top: 2px;
+    }
+    &__container {
+      margin-top: 2px;
+      & input[name="departure"] {
+        border-radius: 6px 6px 0px 0px;
+      }
+      & > input {
+        margin-top: 0;
+        border-radius: 0px 0px 6px 6px;
+      }
+    }
+    &__image {
+      right: 12px;
+      bottom: -18px;
+      transform: rotate(90deg);
+      z-index: 5;
+    }
+    &__sample {
+      display: none;
+    }
+    &__btn-submit {
+      width: 100%;
+      max-width: 350px;
+    }
+    &__icon {
+      right: 47px;
+    }
+    &__calendar {
+      position: absolute;
+      bottom: -180px;
+      right: 0;
+      z-index: 12;
+    }
+  }
+  .react-calendar {
+    max-width:310px;
+    width: 100%;
+  }
 }

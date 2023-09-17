@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from 'swiper/modules';
 import type { Swiper as SwiperType } from "swiper";
-import { ReactComponent as ArrowIcon } from '../../../assets/icons/Arrow Icon.svg';
+import SliderNavButtons from './SliderNavButtons/SliderNavButtons';
+import SliderTabsButtons from './SliderTabsButtons/SliderTabsButtons';
+import { sliderRoutesInternational, sliderRoutesRussia } from '@/constant/constant';
 import './Slider.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { sliderRoutesInternational, sliderRoutesRussia } from '@/constant/constant';
+import { Link } from 'react-router-dom';
+import ButtonRoutes from '../Button/ButtonRoutes/ButtonRoutes';
+
 
 const Slider = ({ title, className }: { title: string, className: string }) => {
     const [activeTab, setActiveTab] = useState('russia');
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
+    const [isFirstSlide, setIsFirstSlide] = useState(true);
+    const [isLastSlide, setIsLastSlide] = useState(false);
+    
+    const handleReachEnd = () => {
+        setIsFirstSlide(false);
+        setIsLastSlide(true);
+    };
+
+    const handleReachBeginning = () => {
+        setIsFirstSlide(true);
+        setIsLastSlide(false);
+    };
 
     useEffect(() => {
         if (swiper) {
@@ -33,7 +49,6 @@ const Slider = ({ title, className }: { title: string, className: string }) => {
     const handleClick = (name: string) => {
         setActiveTab(name);
     }
-
     return (
         <div className={`routes`}>
             <div className='container'>
@@ -41,73 +56,73 @@ const Slider = ({ title, className }: { title: string, className: string }) => {
                     <h2 className='routes__title'>
                         {title}
                     </h2>
-                    <div className='routes-tabs'>
-                        <button className={`routes-tabs__btn 
-                        ${activeTab === 'russia' ? 'active' : ''}`}
-                            type='button'
-                            name='russia'
-                            onClick={() => handleClick('russia')}>
-                            По России
-                        </button>
-                        <button className={`routes-tabs__btn 
-                        ${activeTab === 'international' ? 'active' : ''}`}
-                            type='button'
-                            name='international'
-                            onClick={() => handleClick('international')}
-                        >
-                            Международные
-                        </button>
-                    </div>
-                    <div className='slider-nav'>
-                        <button
-                            type='button'
-                            className='slider-nav__btn prev'
-                            onClick={handleSlidePrev}>
-                            <ArrowIcon />
-                        </button>
-                        <button
-                            type='button'
-                            className='slider-nav__btn next'
-                            onClick={handleNavButtonNext}>
-                            <ArrowIcon />
-                        </button>
-                    </div>
+                    <SliderTabsButtons activeTab={activeTab}
+                        handleClick={(name) => handleClick(name)}
+                         />
+                    <SliderNavButtons
+                        handleSlidePrev={handleSlidePrev}
+                        handleNavButtonNext={handleNavButtonNext}
+                        firstSlide={isFirstSlide}
+                        lastSlide={isLastSlide} />
                 </div>
                 <Swiper className={`slider ${className}`}
+                    onReachEnd={handleReachEnd}
+                    onReachBeginning={handleReachBeginning}
                     onSwiper={setSwiper}
-                    slidesPerView={3}
                     modules={[Navigation]}
                     spaceBetween={32}
+                    breakpoints={{
+                        480: {
+                            slidesPerView: 1,
+                        },
+                        576: {
+                            // width: 576,
+                            slidesPerView: 2,
+                        },
+                        768: {
+                            // width: 768,
+                            slidesPerView: 2,
+                        },
+
+                        991: {
+                            // width: 768,
+                            slidesPerView: 3,
+                        },
+                    }}
 
                 >
                     {activeTab === 'russia' ?
                         sliderRoutesRussia.map((slide) => (
                             <SwiperSlide
                                 key={slide.id}
-                                className='slider__item'>
-                                <div className='slider__content'>
-                                    <p className='slider__name'>{slide.value}</p>
-                                    <p className='slider__price'>от <span>{slide.price}RUB</span></p>
-                                </div>
+                                className='slide'
+                            >
+                                <Link to='' className='slider__item slider-size' data-item={`${slide.id}`} >
+                                    <div className='slider__content'>
+                                        <p className='slider__name'>{slide.value}</p>
+                                        <p className='slider__price'>от <span>{slide.price}RUB</span></p>
+                                    </div>
+                                </Link>
                             </SwiperSlide>
                         )) :
                         sliderRoutesInternational.map((slide) => (
                             <SwiperSlide
                                 key={slide.id}
-                                className='slider__item'>
-                                <div className='slider__content'>
-                                    <p className='slider__name'>{slide.value}</p>
-                                    <p className='slider__price'>от <span>{slide.price}RUB</span></p>
-                                </div> 
-                                
+                            >
+                                <Link to='' className='slider__item' data-item={`${slide.id}`} >
+                                    <div className='slider__content'>
+                                        <p className='slider__name'>{slide.value}</p>
+                                        <p className='slider__price'>от <span>{slide.price}RUB</span></p>
+                                    </div>
+                                </Link>
                             </SwiperSlide>
                         ))
                     }
-
-
                 </Swiper>
+                <div className='routes-more'>
+                    <ButtonRoutes className='routes-more__link' />
+                </div>
             </div>
-
         </div>
     );
 };

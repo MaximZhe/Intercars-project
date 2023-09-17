@@ -6,7 +6,7 @@
     max-width: 1224px;
     width: 100%;
     padding: 0 50px;
-    
+    margin: 0 auto;
   }
   &__main-title {
     font-size: 24px;
@@ -30,9 +30,7 @@
     width: 100%;
   }
   &__wrapper {
-    width: 24px;
-    height: 24px;
-    padding-bottom: 2px;
+   padding: 4px 4px 2px;
     border-radius: 50px;
     background: #f0f3f6;
     display: flex;
@@ -45,6 +43,7 @@
   }
   &__icon {
     fill: #005ee4;
+    margin-bottom: 2px;
   }
   &__title {
     margin-left: 16px;
@@ -71,4 +70,44 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap:48px;
+}
+
+@media (max-width: 660px) {
+  .accordion{
+    &__box{
+      padding: 0 12px;
+    }
+  }
+  .accordion-columns{
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+
+}
+@media (max-width: 576px) {
+  .accordion{
+    padding: 32px 0;
+    &__main-title{
+      font-size: 20px;
+      line-height: 24px;
+    }
+    &__title{
+      font-size: 16px;
+    }
+    &__text{
+      font-size: 14px;
+      line-height: 24px;
+    }
+    &__item{
+      margin-top: 24px;
+    }
+  }
+  .accordion-columns{
+    gap: 0;
+  }
+}
+@media (max-width: 480px) {
+  
 }

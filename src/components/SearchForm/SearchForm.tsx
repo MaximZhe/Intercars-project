@@ -41,6 +41,7 @@ const SearchForm = ({ className }: { className: string }) => {
         const newDate = moment(selectedDate).format('DD.MM.YYYY');
         console.log(newDate)
         setDate(newDate);
+        setCalendarShow(prevState => !prevState);
     };
 
     // const handleSubmit = (e) => {
@@ -159,7 +160,7 @@ const SearchForm = ({ className }: { className: string }) => {
                     {isCalendarShow ?
                         <div className='form-search__calendar'>
                             <Calendar
-                                onChange={handleDateChange}
+                                onClickDay={handleDateChange}
                                 value={TodayDate}
                             />
                         </div>
@@ -171,7 +172,7 @@ const SearchForm = ({ className }: { className: string }) => {
                 </div>
 
             </form>
-            <ListRates datas={tariffData} />
+            
         </>
 
     );
