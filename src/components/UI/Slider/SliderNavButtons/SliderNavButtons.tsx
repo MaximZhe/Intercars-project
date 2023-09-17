@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/hooks/redux';
+
 import { ReactComponent as ArrowIcon } from '../../../../assets/icons/Arrow Icon.svg';
 
 interface SliderNavButtonsProps {

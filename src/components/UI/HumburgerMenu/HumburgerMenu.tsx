@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import { FC } from 'react';
 import './HumburgerMenu.scss';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setIsStateMenuMobail } from '@/redux/slice/menuMobileStateSlice';

@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setLanguageValue, setIsToggleMenu } from '@/redux/slice/languageSlice';
-import { useState } from 'react';
 
 const LanguagePanel = () => {
 

@@ -172,7 +172,7 @@ const SearchForm = ({ className }: { className: string }) => {
                 </div>
 
             </form>
-            
+            <ListRates datas={tariffData}/>
         </>
 
     );

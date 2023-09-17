@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import ActionIconLine  from '../../../assets/images/actions-bg.png';
 import ActionIconLineMobail  from '../../../assets/images/actions-bg-mobail.png';
 import './Actions.scss';
-import { useAppSelector } from '@/hooks/redux';
+
+
 const Actions = () => {
-    const { widthWindow } = useAppSelector(state => state.widthWindowReduser);
+
     return (
         <section className='actions'>
             <div className='container'>

@@ -4,13 +4,9 @@ import { ReactComponent as SupportIcon } from '../../assets/icons/support.svg'
 import './Header.scss'
 import LanguagePanel from './LanguagePanel/LanguagePanel';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '@/hooks/redux';
 import HumburgerMenu from '../UI/HumburgerMenu/HumburgerMenu';
-import { useState } from 'react';
 
 const Header = () => {
-    const { widthWindow  } = useAppSelector(state => state.widthWindowReduser);
-    
     return (
         <header className='header' >
             <div className='container-fluid'>
