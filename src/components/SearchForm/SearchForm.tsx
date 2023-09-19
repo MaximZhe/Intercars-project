@@ -10,6 +10,7 @@ import { ReactComponent as CalendarIcon } from '../../assets/icons/calendar.svg'
 import { ReactComponent as ArrowForm } from '../../assets/icons/arrow-form.svg';
 
 const SearchForm = ({ className }: { className: string }) => {
+    
     const defaultCityForm = {
         Minsk: 'Минск',
         Mosсow: 'Москва'
@@ -19,11 +20,12 @@ const SearchForm = ({ className }: { className: string }) => {
         Tomorrow: 'Завтра'
     }
     const TodayDate = new Date();
+
     const defaultDate = moment(TodayDate).format('DD.MM.YYYY');
     const defaultNextDate = moment(TodayDate).add(1, 'd').format('DD.MM.YYYY');
     const [departure, setDeparture] = useState('');
     const [destination, setDestination] = useState('');
-    const [date, setDate] = useState(defaultDate);
+    const [date, setDate] = useState(defaultDate)
 
     const [isCalendarShow, setCalendarShow] = useState(false)
     const [isButtonClicked, setButtonClicked] = useState(false);
@@ -51,27 +53,27 @@ const SearchForm = ({ className }: { className: string }) => {
     //     const results = []; // Результаты запроса с сервера
     //     setItems(results);
     // };
-
+   
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // const dataToSend = {
-                //     departure
-                    
-                // };
-                const response = await axios.get('http://api.intercars-tickets.com/api/v1/GetByName?name=Minsk',{
-     
-                });
-                // const response = await axios.post('http://api.intercars-tickets.com/api/v1/GetByName?name=Minsk', dataToSend);
-                console.log(response)
-                setTariffData(response.data);
+                const datas = {
+                    name: 'минск',
+                    lang: 0,
+                  };
+                //const response = await axios.get('http://api.intercars-tickets.com/api/v1/GetByName?name=Minsk',{
+
+                //});
+                const response = await axios.post('http://rusv2.intercars-tickets.com/api/v1/cities/find', datas);
+                // console.log(response)
+                // setTariffData(response.data);
                 // const response = await axios.get('https://raw.githubusercontent.com/MaximZhe/Intercars/main/data.json');
                 // const response = await axios.get('https://raw.githubusercontent.com/MaximZhe/Intercars/main/data.json');
-                //const response = await axios.get('http://localhost:5173/Intercars/data/data.json');
-                //const data = response.data;
-                //console.log(data);
-                //setTariffData(data);
-                
+                // const response = await axios.get('http://localhost:5173/Intercars/data.json');
+                const dat = response.data;
+                console.log(response.data);
+                setTariffData(dat);
+
 
             } catch (error) {
                 console.error('Ошибка при отправке данных на сервер:', error);
@@ -172,7 +174,7 @@ const SearchForm = ({ className }: { className: string }) => {
                 </div>
 
             </form>
-            <ListRates datas={tariffData}/>
+            <ListRates datas={tariffData} />
         </>
 
     );

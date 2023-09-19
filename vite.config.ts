@@ -13,6 +13,9 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/components'),
     },
   },
-  base: "/Intercars-project/",
+  // base: "/Intercars-project/",
   plugins: [react(),svgr()],
+  server: {
+    host: true,
+  },
 })

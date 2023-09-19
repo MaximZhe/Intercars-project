@@ -1,10 +1,11 @@
 {
-  "homepage": "https://maximzhe.github.io/Intercars-project",
+  "homepage": ".",
   "name": "testing",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "host":"vite --host",
     "dev": "vite",
     "build": "tsc && vite build",
     "predeploy": "npm run build",

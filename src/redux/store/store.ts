@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import widthWindowReduser from '../slice/widthWindowSlice'
 import languageReduser from "../slice/languageSlice";
 import stateMobileMenuReduser from '../slice/menuMobileStateSlice'
-import sliderItemsReduser from '../slice/sliderItems';
+import sliderItemsReduser from '../slice/sliderItemsSlice';
 
 const rootReduser = combineReducers({
     widthWindowReduser,

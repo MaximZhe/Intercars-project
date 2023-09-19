@@ -43,7 +43,7 @@ const Menu = () => {
                         </div>
                     </div>
                     <Link className='menu__item' to='/'>Сотрудничество</Link>
-                    <Link className='menu__item' to='/'>Оплата</Link>
+                    <Link className='menu__item' to='/pay'>Оплата</Link>
                     <Link className='menu__item' to='/'>Правила</Link>
                 </nav>
                 {widthWindow < 600 ?

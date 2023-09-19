@@ -8,8 +8,9 @@ import { sliderRoutesInternational, sliderRoutesRussia } from '@/constant/consta
 import './Slider.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Link } from 'react-router-dom';
+
 import ButtonRoutes from '../Button/ButtonRoutes/ButtonRoutes';
+import RouteItem from '@/components/RouteItem/RouteItem';
 
 
 const Slider = ({ title, className }: { title: string, className: string }) => {
@@ -76,20 +77,16 @@ const Slider = ({ title, className }: { title: string, className: string }) => {
                             slidesPerView: 1,
                         },
                         576: {
-                            // width: 576,
                             slidesPerView: 2,
                         },
                         768: {
-                            // width: 768,
                             slidesPerView: 2,
                         },
 
                         991: {
-                            // width: 768,
                             slidesPerView: 3,
                         },
                     }}
-
                 >
                     {activeTab === 'russia' ?
                         sliderRoutesRussia.map((slide) => (
@@ -97,24 +94,14 @@ const Slider = ({ title, className }: { title: string, className: string }) => {
                                 key={slide.id}
                                 className='slide'
                             >
-                                <Link to='' className='slider__item slider-size' data-item={`${slide.id}`} >
-                                    <div className='slider__content'>
-                                        <p className='slider__name'>{slide.value}</p>
-                                        <p className='slider__price'>от <span>{slide.price}RUB</span></p>
-                                    </div>
-                                </Link>
+                                <RouteItem data={slide}/>
                             </SwiperSlide>
                         )) :
                         sliderRoutesInternational.map((slide) => (
                             <SwiperSlide
                                 key={slide.id}
                             >
-                                <Link to='' className='slider__item' data-item={`${slide.id}`} >
-                                    <div className='slider__content'>
-                                        <p className='slider__name'>{slide.value}</p>
-                                        <p className='slider__price'>от <span>{slide.price}RUB</span></p>
-                                    </div>
-                                </Link>
+                                <RouteItem data={slide}/>
                             </SwiperSlide>
                         ))
                     }
