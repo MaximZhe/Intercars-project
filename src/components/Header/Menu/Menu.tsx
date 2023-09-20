@@ -2,18 +2,22 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as ArrowDown } from '../../../assets/icons/Arrow Icon.svg'
 import { ReactComponent as UserIcon } from '../../../assets/icons/user.svg';
 import './Menu.scss'
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setLanguageValue} from '@/redux/slice/languageSlice';
 
-const Menu = () => {
+interface IMenuProps{
+    className?: string
+}
+
+const Menu:FC<IMenuProps> = ({className}) => {
     const { widthWindow } = useAppSelector(state => state.widthWindowReduser);
     const [isOpenDropdown, setIsOpenDropdown] = useState(false);
     const { language } = useAppSelector(state => state.languageReduser);
     const { isShow } = useAppSelector(state => state.stateMobileMenuReduser);
     const dispatch = useAppDispatch();
     return (
-        <div className={`nav ${!isShow ? 'hide' : 'show'} `}>
+        <div className={`nav ${!isShow ? 'hide' : 'show'} ${className ? className : ''} `}>
             <div className='container'>
                 {widthWindow < 600 ?
                     <div className={`user ${widthWindow < 600 ? 'mobail' : ''} `}>
@@ -31,7 +35,7 @@ const Menu = () => {
                         <div className='menu-dropdown'
                             onMouseEnter={() => setIsOpenDropdown(true)}
                             onMouseLeave={() => setIsOpenDropdown(false)}>
-                            <Link to='' className='menu-dropdown__link'>
+                            <Link to='/sales' className='menu-dropdown__link'>
                                 Акции
                             </Link>
                             <Link to='' className='menu-dropdown__link'>

@@ -42,3 +42,12 @@ export interface ISliderRoute {
   value:string,
   price:number
 }
+export interface IItemSalesPageProps {
+  id: number,
+  date: Date,
+  title: string,
+  startSale: {
+      dateStart: Date,
+      timeStart: Date,
+  }
+}

@@ -1,6 +1,6 @@
 import './App.scss';
 // import Header from './components/Header/Header';
-// import AppRoute from './components/AppRoute/AppRoute'
+import AppRoute from './components/AppRoute/AppRoute'
 import { WindowScreenUser } from './utils/windowScreen';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
@@ -25,16 +25,7 @@ function App() {
 
   return (
     <>
-      <div className='main'>
-        <Routes>
-          <Route path="/" element={<AppLayout />}>
-            <Route path='Home' element={<HomePage />} />
-            <Route path='sales' element={<SalesPage />} />
-            <Route path='rules' element={<RulesPage />} />
-            <Route path='pay' element={<PayPage />} />
-          </Route>
-        </Routes>
-      </div>
+      <AppRoute/>
     </>
 
   )
