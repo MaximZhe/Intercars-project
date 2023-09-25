@@ -1,6 +1,6 @@
 
-import Menu from '../Header/Menu/Menu';
-import SearchForm from '../SearchForm/SearchForm';
+import Menu from '../../components/Header/Menu/Menu';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import './HomePage.scss';
 
 import Actions from './Actions/Actions';
@@ -9,7 +9,7 @@ import Advantages from './Advantages/Advantages';
 import Accordion from './FAQ/FAQ';
 
 
-import Slider from '../UI/Slider/Slider';
+import Slider from '../../components/UI/Slider/Slider';
 import {accordionItemsLeft,accordionItemsRight } from '@/constant/constant';
 
 const HomePage = () => {

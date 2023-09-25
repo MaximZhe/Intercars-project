@@ -19,11 +19,11 @@ const Menu:FC<IMenuProps> = ({className}) => {
     return (
         <div className={`nav ${!isShow ? 'hide' : 'show'} ${className ? className : ''} `}>
             <div className='container'>
-                {widthWindow < 600 ?
-                    <div className={`user ${widthWindow < 600 ? 'mobail' : ''} `}>
+                
+                    <div className={`user user--mobail`}>
                         <UserIcon className='user__icon' />
                         <p className='user__text'>Личный кабинет</p>
-                    </div> : null}
+                    </div>
                 <nav className='menu'>
                     <div className='menu__wrapper'>
                         <button className={`menu__item ${isOpenDropdown ? 'active' : ''}`}
@@ -35,7 +35,7 @@ const Menu:FC<IMenuProps> = ({className}) => {
                         <div className='menu-dropdown'
                             onMouseEnter={() => setIsOpenDropdown(true)}
                             onMouseLeave={() => setIsOpenDropdown(false)}>
-                            <Link to='/sales' className='menu-dropdown__link'>
+                            <Link to='/Home/sales' state={'Главная/Акции'} className='menu-dropdown__link'>
                                 Акции
                             </Link>
                             <Link to='' className='menu-dropdown__link'>
@@ -50,8 +50,8 @@ const Menu:FC<IMenuProps> = ({className}) => {
                     <Link className='menu__item' to='/pay'>Оплата</Link>
                     <Link className='menu__item' to='/'>Правила</Link>
                 </nav>
-                {widthWindow < 600 ?
-                    <div className="dropdown-menu mobail">
+                
+                    <div className="dropdown-menu dropdown-menu--mobail">
                         <button type='button'
                             className={`dropdown-item ${language=== 'RUS' ? 'active' : ''}`}
                             onClick={() => dispatch(setLanguageValue('RUS'))}>
@@ -67,7 +67,7 @@ const Menu:FC<IMenuProps> = ({className}) => {
                             onClick={() => dispatch(setLanguageValue('PL'))}>
                             PL
                         </button>
-                    </div> : null}
+                    </div> 
             </div>
 
         </div>

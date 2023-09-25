@@ -94,20 +94,20 @@ const Slider = ({ title, className }: { title: string, className: string }) => {
                                 key={slide.id}
                                 className='slide'
                             >
-                                <RouteItem data={slide}/>
+                                <RouteItem className={'slider-main'} data={slide}/>
                             </SwiperSlide>
                         )) :
                         sliderRoutesInternational.map((slide) => (
                             <SwiperSlide
                                 key={slide.id}
                             >
-                                <RouteItem data={slide}/>
+                                <RouteItem className={'slider-main'} data={slide}/>
                             </SwiperSlide>
                         ))
                     }
                 </Swiper>
                 <div className='routes-more'>
-                    <ButtonRoutes className='routes-more__link' />
+                    <ButtonRoutes to={'/'} title={'Все маршруты'} className='routes-more__link' />
                 </div>
             </div>
         </div>

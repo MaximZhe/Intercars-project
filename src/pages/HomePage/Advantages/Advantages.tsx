@@ -59,7 +59,6 @@ const Advantages = () => {
                         </p>
                     </div>
                 </div>
-
             </div>
         </section>
     );

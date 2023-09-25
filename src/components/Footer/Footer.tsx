@@ -62,7 +62,7 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                                         <Link to={`/route/${item.id}`} className='footer-routes__link'>{item.value}</Link>
                                     </li>)}
                             </ul>
-                            <ButtonRoutes className='footer-routes__more'/>
+                            <ButtonRoutes to={'/'} title={'Все маршруты'} className='footer-routes__more'/>
                         </div>
                         <div className={`footer-nav ${isOpenInfo ? 'active' : ''}`}>
                             <h3 className='footer__title'

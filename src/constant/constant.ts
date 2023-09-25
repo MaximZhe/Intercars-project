@@ -84,7 +84,7 @@ export const SalesPageListData:IItemSalesPageProps[] = [
   {
     id: 2,
     date: new Date(),
-    title: "Акция: в Варшаву и обратно с 50% скидкой",
+    title: "Акция в Будапешт и обратно со скидкой",
     startSale: {
       dateStart: new Date(),
       timeStart: new Date(),

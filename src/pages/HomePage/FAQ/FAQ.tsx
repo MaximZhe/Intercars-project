@@ -73,11 +73,8 @@ const Accordion: React.FC<AccordionProps> = ({ itemsLeft, itemsRight }) => {
                             ))}
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     );
 };
