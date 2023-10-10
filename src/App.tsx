@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const widthWindow = WindowScreenUser()
-    dispatch(setWidthWindow(widthWindow));
+    
     console.log(widthWindow)
   }, [dispatch, widthWindow])
 

@@ -6,7 +6,7 @@ const initialState = {
 }
 
 export const singleItemSales = createSlice({
-    name: ' singleItemSale',
+    name: 'singleItemSale',
     initialState,
     reducers: {
         setDataItem:(state, action: PayloadAction<[]>) => {

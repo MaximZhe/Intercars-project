@@ -11,12 +11,17 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@types': path.resolve(__dirname, './src/types'),
       '@components': path.resolve(__dirname, './src/components'),
+      '@images': path.resolve(__dirname, './src/assets/images'),
     },
   },
+ 
   // base: "/Intercars-project/",
   base: "/Home/",
   plugins: [react(),svgr()],
   server: {
     host: true,
+    proxy: {
+      '/api' : 'http://rusv2.intercars-tickets.com'
+    }
   },
 })

@@ -1,19 +1,35 @@
 import { FC } from 'react';
 import ListRatesItem from '../ListRatesItem/ListRatesItem';
 import './ListRates.scss';
-import { ITariffData } from '../../types/types';
+import { useAppSelector } from '@/hooks/redux';
+import SearchForm from '../SearchForm/SearchForm';
+import Breadcrumbs from '../UI/Breadcrumbs/Breadcrumbs';
 
-interface ListRatesProps {
-    datas: ITariffData[];
-}
-const ListRates: FC<ListRatesProps> = ({ datas }) => {
-    const sortedPrices = datas.map(item => item.price).sort((a, b) => a - b);
+
+const ListRates: FC = () => {
+    const formatedPrice = (price: number) => {
+        return Math.floor(price);
+    }
+    const { dataRoute } = useAppSelector(state => state.dataRouteReduser);
+    const routesArray = dataRoute.Result.CarrierRoutes.map((item: { Routes: any; }) => item.Routes).flat();
+    const sortedPrices = routesArray.map(item => item.Price[2].Ptar).sort((a, b) => a - b);
+    console.log(routesArray)
     return (
-        <div className='list'>
-            {datas.map((data) => (
-                <ListRatesItem key={data.id} data={data} sortedPrices={sortedPrices}/>
-            ))}
-        </div>
+        <section className='rates'>
+            <SearchForm className='rates__form' />
+            <div className='container'>
+                <div className='rates__wrapper'>
+                    <Breadcrumbs />
+                    <div className='list'>
+                        {routesArray.length < 1 ? <p>Нет подходящих рейсов, выберите другую дату или маршрут</p> : null}
+                        {routesArray.map((data) => (
+                            <ListRatesItem key={data.Id} data={data} sortedPrices={sortedPrices} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+
     );
 };
 

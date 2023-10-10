@@ -4,13 +4,18 @@ import languageReduser from "../slice/languageSlice";
 import stateMobileMenuReduser from '../slice/menuMobileStateSlice'
 import sliderItemsReduser from '../slice/sliderItemsSlice';
 import singleItemSalesReduser from '../slice/singleItemSalesSlice';
+import dataRouteReduser from '../slice/getRoutesSlice';
+import cityDepartureSlice from "../slice/cityDepartureSlice";
+import cityArrivalSlice from '../slice/cityArrivalSlice';
 
 const rootReduser = combineReducers({
     widthWindowReduser,
     languageReduser,
     stateMobileMenuReduser,
     sliderItemsReduser,
-    singleItemSalesReduser
+    singleItemSalesReduser,
+    dataRouteReduser,
+
 })
 
 export const setupStore = () => {

@@ -8,9 +8,96 @@ import ListRates from '../ListRates/ListRates';
 import './SearchForm.scss';
 import { ReactComponent as CalendarIcon } from '../../assets/icons/calendar.svg';
 import { ReactComponent as ArrowForm } from '../../assets/icons/arrow-form.svg';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setDataRoute } from '@/redux/slice/getRoutesSlice';
+import { fetchCityDeparture } from '@/redux/actions/fetchCityDeparture';
+import { fetchCityArrival } from '@/redux/actions/fetchCityArrival';
+const initialStateResult = {
+    Id: 0,
+    Name: '',
+    Coordinates: {
+        Latitude: '',
+        Longitude: ''
+    }
+}
+const initialStateRoute = {
+    Result: {
+        CarrierRoutes: [],
+        CityArrival: 0,
+        CityDeparture: 0,
+        Date: '',
+        Id: '',
+        IsActive: false,
+        IsDynamic: false,
+        SaveDate: ''
+    },
+    Error: null
+}
+interface ICityDataProps {
+    Result: [
+        {
+            Id: number,
+            Name: string,
+            Coordinates: {
+                Latitude: string,
+                Longitude: string
+            }
+        }
+    ],
+    Error: null
 
+}
+interface IFetchDataRoutes {
+    SearchId?: string,
+    CityDeparture: number,
+    CityArrival: number,
+    Date: string,
+    Carriers?: number[],
+    IsDynamic?: boolean,
+    Lang?: string
+
+}
+interface IRouteData {
+    Result: {
+        CarrierRoutes: [],
+        CityArrival: number,
+        CityDeparture: number
+        Date: string,
+        Id: string,
+        IsActive: boolean,
+        IsDynamic: boolean,
+        SaveDate: string
+    },
+    Error: null
+}
 const SearchForm = ({ className }: { className: string }) => {
-    
+
+    const [cityDepartureValue, setCityDepartureValue] = useState<string>('');
+    const [cityArrivalValue, setCityArrivalValue] = useState<string>('');
+    const [cityDepartureData, setCityDepartureData] = useState<ICityDataProps>({
+        Result: [initialStateResult],
+        Error: null
+    });
+    const [cityArrivalData, setCityArrivalData] = useState<ICityDataProps>({
+        Result: [initialStateResult],
+        Error: null
+    });
+    const [routeData, setRouteData] = useState<IRouteData>({
+        Result: {
+            CarrierRoutes: [],
+            CityArrival: 0,
+            CityDeparture: 0,
+            Date: '',
+            Id: '',
+            IsActive: false,
+            IsDynamic: false,
+            SaveDate: ''
+        },
+        Error: null
+    })
+    const [idDynamic, setIdDynamic] = useState<string>('')
+    const [isActiveRoute, setIsActiveRoute] = useState<boolean>(true)
     const defaultCityForm = {
         Minsk: 'Минск',
         Mosсow: 'Москва'
@@ -20,74 +107,134 @@ const SearchForm = ({ className }: { className: string }) => {
         Tomorrow: 'Завтра'
     }
     const TodayDate = new Date();
-
     const defaultDate = moment(TodayDate).format('DD.MM.YYYY');
     const defaultNextDate = moment(TodayDate).add(1, 'd').format('DD.MM.YYYY');
-    const [departure, setDeparture] = useState('');
-    const [destination, setDestination] = useState('');
+
+
     const [date, setDate] = useState(defaultDate)
 
     const [isCalendarShow, setCalendarShow] = useState(false)
     const [isButtonClicked, setButtonClicked] = useState(false);
-    const [tariffData, setTariffData] = useState<ITariffData[]>([])
 
     const handleDepartureChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
-        setDeparture(e.target.value);
+        setCityDepartureValue(e.target.value);
     };
 
-    const handleDestinationChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
-        setDestination(e.target.value);
+    const handleArrivalChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+        setCityArrivalValue(e.target.value);
     };
 
     const handleDateChange = (selectedDate: any) => {
         const newDate = moment(selectedDate).format('DD.MM.YYYY');
-        console.log(newDate)
         setDate(newDate);
         setCalendarShow(prevState => !prevState);
     };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     // Отправка запроса на сервер с параметрами departure, destination и date
-    //     // и обработка полученного списка элементов
-    //     const results = []; // Результаты запроса с сервера
-    //     setItems(results);
-    // };
-   
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchCityDeparture = async (cityDeparture: string) => {
             try {
-                const datas = {
-                    name: 'минск',
-                    lang: 0,
-                  };
-                //const response = await axios.get('http://api.intercars-tickets.com/api/v1/GetByName?name=Minsk',{
-
-                //});
-                const response = await axios.post('http://rusv2.intercars-tickets.com/api/v1/cities/find', datas);
-                // console.log(response)
-                // setTariffData(response.data);
-                // const response = await axios.get('https://raw.githubusercontent.com/MaximZhe/Intercars/main/data.json');
-                // const response = await axios.get('https://raw.githubusercontent.com/MaximZhe/Intercars/main/data.json');
-                // const response = await axios.get('http://localhost:5173/Intercars/data.json');
+                const data = {
+                    name: cityDeparture,
+                    lang: 'RUS'
+                }
+                const response = await axios.post('/api/v1/cities/find', data);
                 const dat = response.data;
-                console.log(response.data);
-                setTariffData(dat);
+                setCityDepartureData(dat);
+            }
+            catch (error) {
 
-
-            } catch (error) {
                 console.error('Ошибка при отправке данных на сервер:', error);
             }
-        };
-        if (isButtonClicked) {
-            fetchData();
         }
-    }, [isButtonClicked])
+        if (cityDepartureValue.length > 3) {
+            fetchCityDeparture(cityDepartureValue);
+        }
+        const fetchCityArrival = async (cityArrival: string) => {
+            try {
+                const data = {
+                    name: cityArrival,
+                    lang: 'RUS'
+                }
+                const response = await axios.post('/api/v1/cities/find', data);
+                const dat = response.data;
+                setCityArrivalData(dat);
+            }
+            catch (error) {
+
+                console.error('Ошибка при отправке данных на сервер:', error);
+            }
+        }
+        if (cityArrivalValue.length > 3) {
+            fetchCityArrival(cityArrivalValue);
+        }
+    }, [cityArrivalValue, cityDepartureValue])
+    const fetchData = async () => {
+        try {
+            const fetchDate = moment(date).format('YYYY-DD-MM')
+            const datas: IFetchDataRoutes = {
+                CityDeparture: cityDepartureData.Result[0].Id,
+                CityArrival: cityArrivalData.Result[0].Id,
+                Date: fetchDate,
+                IsDynamic: true,
+            };
+
+            const response = await axios.post('/api/v1/routes/search', datas);
+            const dat = response.data;
+
+            setIdDynamic(dat.Result.Id);
+            setRouteData(dat);
+        } catch (error) {
+            console.error('Ошибка при отправке данных на сервер:', error);
+        } finally {
+            setCityDepartureValue('');
+            setCityArrivalValue('');
+        }
+    };
+
+    if (isButtonClicked) {
+        fetchData();
+        setButtonClicked(false);
+        setIdDynamic('');
+    }
+
+    useEffect(() => {
+        if (routeData.Result.IsActive) {
+            const fetchDynamicRoutes = async (id: string) => {
+                try {
+                    const da = {
+                        "SearchId": id,
+                    };
+
+                    const response = await axios.post('/api/v1/routes/search', da);
+                    const dat = response.data;
+                    setRouteData(dat);
+
+                    if (!dat.Result.IsActive) {
+                        setRouteData(dat);
+                        console.log(routeData)
+                        console.log(dat.Result.IsActive)
+                        clearInterval(timer);
+                        dispatch(setDataRoute(dat));
+                        navigate('/Home/list-result-routes', { state: 'Главная/Поиск билетов' });
+                    }
+
+                } catch (error) {
+                    console.error('Ошибка при отправке данных на сервер:', error);
+                }
+            };
+
+            const timer = setInterval(async () => {
+                await fetchDynamicRoutes(routeData.Result.Id);
+            }, 2000);
+
+            return () => {
+                clearInterval(timer);
+            };
+        }
+    }, [routeData]);
     const handleSubmit = () => {
         setButtonClicked(true);
-        console.log(departure,
-            destination,
-            date)
     };
     return (
         <>
@@ -99,7 +246,7 @@ const SearchForm = ({ className }: { className: string }) => {
                             id="departure"
                             name='departure'
                             type="text"
-                            value={departure}
+                            value={cityDepartureValue}
                             onChange={handleDepartureChange}
                             placeholder='Пункт отправления'
                         />
@@ -108,8 +255,8 @@ const SearchForm = ({ className }: { className: string }) => {
 
                     <div className='form-search__sample'>
                         <p className='form-search__text'>Например:</p>
-                        <button className='form-search__btn' type='button' onClick={() => setDeparture(defaultCityForm.Minsk)}>{defaultCityForm.Minsk}</button>
-                        <button className='form-search__btn' type='button' onClick={() => setDeparture(defaultCityForm.Mosсow)}>{defaultCityForm.Mosсow}</button>
+                        <button className='form-search__btn' type='button' onClick={() => setCityDepartureValue(defaultCityForm.Minsk)}>{defaultCityForm.Minsk}</button>
+                        <button className='form-search__btn' type='button' onClick={() => setCityDepartureValue(defaultCityForm.Mosсow)}>{defaultCityForm.Mosсow}</button>
                     </div>
                 </div>
 
@@ -118,18 +265,18 @@ const SearchForm = ({ className }: { className: string }) => {
 
                     <input
                         className='form-search__input'
-                        id="destination"
-                        name='destination'
+                        id="arrival"
+                        name='arrival'
                         type="text"
-                        value={destination}
-                        onChange={handleDestinationChange}
+                        value={cityArrivalValue}
+                        onChange={handleArrivalChange}
                         placeholder='Пункт назначения'
                     />
                     <div className='form-search__sample'>
                         <p className='form-search__text'>Например:</p>
 
-                        <button className='form-search__btn' type='button' onClick={() => setDestination(defaultCityForm.Minsk)}>{defaultCityForm.Minsk}</button>
-                        <button className='form-search__btn' type='button' onClick={() => setDestination(defaultCityForm.Mosсow)}>{defaultCityForm.Mosсow}</button>
+                        <button className='form-search__btn' type='button' onClick={() => setCityArrivalValue(defaultCityForm.Minsk)}>{defaultCityForm.Minsk}</button>
+                        <button className='form-search__btn' type='button' onClick={() => setCityArrivalValue(defaultCityForm.Mosсow)}>{defaultCityForm.Mosсow}</button>
                     </div>
                 </div>
 
@@ -174,7 +321,6 @@ const SearchForm = ({ className }: { className: string }) => {
                 </div>
 
             </form>
-            <ListRates datas={tariffData} />
         </>
 
     );

@@ -1,0 +1,23 @@
+.contacts-item-email {
+    position: relative;
+    padding-left: 30px;
+    &::before {
+      transition: 0.3s ease-in-out;
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url("../../../assets/icons/mail.svg") no-repeat;
+      background-position-x: center;
+      position: absolute;
+      left: 0;
+      cursor: pointer;
+    }
+    &:hover {
+      &::before {
+        background: url("../../../assets/icons/mail-blue.svg") no-repeat;
+      }
+    }
+    & > a:hover {
+      color: #0243a6;
+    }
+  }
