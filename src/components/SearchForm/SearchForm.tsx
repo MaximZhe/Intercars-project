@@ -3,17 +3,15 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { ITariffData } from '../../types/types';
-import ListRates from '../ListRates/ListRates';
 import './SearchForm.scss';
 import { ReactComponent as CalendarIcon } from '../../assets/icons/calendar.svg';
 import { ReactComponent as ArrowForm } from '../../assets/icons/arrow-form.svg';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { useAppDispatch} from '@/hooks/redux';
 import { setDataRoute } from '@/redux/slice/getRoutesSlice';
-import { fetchCityDeparture } from '@/redux/actions/fetchCityDeparture';
-import { fetchCityArrival } from '@/redux/actions/fetchCityArrival';
-const initialStateResult = {
+import { defaultCityForm, defaultDateForm } from '@/constant/constant';
+
+const initialStateResultCity = {
     Id: 0,
     Name: '',
     Coordinates: {
@@ -21,19 +19,7 @@ const initialStateResult = {
         Longitude: ''
     }
 }
-const initialStateRoute = {
-    Result: {
-        CarrierRoutes: [],
-        CityArrival: 0,
-        CityDeparture: 0,
-        Date: '',
-        Id: '',
-        IsActive: false,
-        IsDynamic: false,
-        SaveDate: ''
-    },
-    Error: null
-}
+
 interface ICityDataProps {
     Result: [
         {
@@ -46,7 +32,6 @@ interface ICityDataProps {
         }
     ],
     Error: null
-
 }
 interface IFetchDataRoutes {
     SearchId?: string,
@@ -76,11 +61,11 @@ const SearchForm = ({ className }: { className: string }) => {
     const [cityDepartureValue, setCityDepartureValue] = useState<string>('');
     const [cityArrivalValue, setCityArrivalValue] = useState<string>('');
     const [cityDepartureData, setCityDepartureData] = useState<ICityDataProps>({
-        Result: [initialStateResult],
+        Result: [initialStateResultCity],
         Error: null
     });
     const [cityArrivalData, setCityArrivalData] = useState<ICityDataProps>({
-        Result: [initialStateResult],
+        Result: [initialStateResultCity],
         Error: null
     });
     const [routeData, setRouteData] = useState<IRouteData>({
@@ -96,23 +81,15 @@ const SearchForm = ({ className }: { className: string }) => {
         },
         Error: null
     })
-    const [idDynamic, setIdDynamic] = useState<string>('')
-    const [isActiveRoute, setIsActiveRoute] = useState<boolean>(true)
-    const defaultCityForm = {
-        Minsk: 'Минск',
-        Mosсow: 'Москва'
-    }
-    const defaultDateForm = {
-        Today: 'Сегодня',
-        Tomorrow: 'Завтра'
-    }
+
+    
     const TodayDate = new Date();
     const defaultDate = moment(TodayDate).format('DD.MM.YYYY');
     const defaultNextDate = moment(TodayDate).add(1, 'd').format('DD.MM.YYYY');
 
 
     const [date, setDate] = useState(defaultDate)
-
+    const [valueDateFetchFormat, setValueDateFetchFormat] = useState(date)
     const [isCalendarShow, setCalendarShow] = useState(false)
     const [isButtonClicked, setButtonClicked] = useState(false);
 
@@ -126,8 +103,11 @@ const SearchForm = ({ className }: { className: string }) => {
 
     const handleDateChange = (selectedDate: any) => {
         const newDate = moment(selectedDate).format('DD.MM.YYYY');
+        const newDateFormatFetch = moment(selectedDate).format('YYYY-MM-DD');
         setDate(newDate);
+        setValueDateFetchFormat(newDateFormatFetch)
         setCalendarShow(prevState => !prevState);
+        console.log(newDate)
     };
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -171,20 +151,18 @@ const SearchForm = ({ className }: { className: string }) => {
     }, [cityArrivalValue, cityDepartureValue])
     const fetchData = async () => {
         try {
-            const fetchDate = moment(date).format('YYYY-DD-MM')
             const datas: IFetchDataRoutes = {
                 CityDeparture: cityDepartureData.Result[0].Id,
                 CityArrival: cityArrivalData.Result[0].Id,
-                Date: fetchDate,
+                Date: valueDateFetchFormat,
                 IsDynamic: true,
             };
-
+            console.log(datas)
             const response = await axios.post('/api/v1/routes/search', datas);
             const dat = response.data;
-
-            setIdDynamic(dat.Result.Id);
             setRouteData(dat);
         } catch (error) {
+           
             console.error('Ошибка при отправке данных на сервер:', error);
         } finally {
             setCityDepartureValue('');
@@ -195,7 +173,6 @@ const SearchForm = ({ className }: { className: string }) => {
     if (isButtonClicked) {
         fetchData();
         setButtonClicked(false);
-        setIdDynamic('');
     }
 
     useEffect(() => {
@@ -208,11 +185,10 @@ const SearchForm = ({ className }: { className: string }) => {
 
                     const response = await axios.post('/api/v1/routes/search', da);
                     const dat = response.data;
+                    console.log(dat)
                     setRouteData(dat);
 
                     if (!dat.Result.IsActive) {
-                        setRouteData(dat);
-                        console.log(routeData)
                         console.log(dat.Result.IsActive)
                         clearInterval(timer);
                         dispatch(setDataRoute(dat));

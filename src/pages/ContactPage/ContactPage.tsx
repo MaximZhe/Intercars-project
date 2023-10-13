@@ -25,7 +25,7 @@ const ContactPage = () => {
                             <Breadcrumbs />
                             <div className='contacts__container'>
                                 <h1 className='contacts__title'>
-                                    Контакты <CustomBalloonLayout/>
+                                    Контакты 
                                 </h1>
                                 <div className='contacts-box'>
                                     <h2 className='contacts-box__title-adress'>

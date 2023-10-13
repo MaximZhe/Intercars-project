@@ -1,15 +1,15 @@
 import moment from "moment";
 
-const newMonthShort = ['янв','фев','мар','апр','мая','июн','июл','авг','сент','окт','ноябр','дек'];
+const newMonthShort = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'нояб', 'дек'];
 const newMonth = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
 const newWeekDay = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
-const newWeekDayShort = ['вc','пн','вт','ср','чт','пт','сб'];
+const newWeekDayShort = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
 
-export function formatedDate(defaultDate:string){
-  const newDay = moment(defaultDate).format('DD');
-  const monthIndex1 = moment(defaultDate).format('MM'); 
-  const monthIndex = +monthIndex1 - 1;
-  const weekDayIndex = moment(defaultDate).day();
-  const newDate = `${newDay} ${newMonthShort[monthIndex]}, ${newWeekDayShort[weekDayIndex]}`;
-   return newDate
+export function formatedDate(defaultDate: string) {
+  const [day, month, year] = defaultDate.split('.');
+  const monthAbbreviation = newMonthShort[parseInt(month) - 1];
+  const date = new Date(`${year}-${month}-${day}`);
+const weekdayAbbreviation = newWeekDayShort[date.getDay()];
+  const newDate = `${day} ${monthAbbreviation}, ${weekdayAbbreviation}`;
+  return newDate;
 }

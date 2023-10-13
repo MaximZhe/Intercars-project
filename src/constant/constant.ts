@@ -220,4 +220,11 @@ export const NewsPageListData: IItemNewsPageProps[] = [
   },
 ];
 
-
+export const defaultCityForm = {
+  Minsk: 'Минск',
+  Mosсow: 'Москва'
+}
+export const defaultDateForm = {
+  Today: 'Сегодня',
+  Tomorrow: 'Завтра'
+}

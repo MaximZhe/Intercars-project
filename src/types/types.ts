@@ -59,7 +59,7 @@ interface IItemStop {
   Latitude: null | string;
   Longitude: null | string;
 }
-interface IItemBusOptions {
+export interface IItemBusOptions {
   Id: number;
   Name: string;
   IsEnabled: boolean;
