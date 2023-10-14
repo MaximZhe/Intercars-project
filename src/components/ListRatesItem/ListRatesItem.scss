@@ -162,8 +162,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &.active{
+      & > img {
+        transition: .5s ease;
+        transform: rotate(90deg);
+      }
+    }
   }
   &__icon {
+    transition: .5s ease;
     width: 6px;
     height: 10px;
   }

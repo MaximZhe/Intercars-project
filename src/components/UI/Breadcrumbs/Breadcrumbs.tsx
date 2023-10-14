@@ -5,23 +5,8 @@ import { Link, useLocation, useMatch, useNavigate } from 'react-router-dom';
 const Breadcrumbs = () => {
     const location = useLocation();
     const salesMatch = useMatch(`${location.state}`);
-    console.log(location)
+    console.log(location.pathname)
   
-    // const generateCrumbs = (state:string, pathname:string) => {
-    //   const paths = state.split('/').filter(Boolean);
-    //   const links = pathname.split('/').filter(Boolean);
-    //   const arr = [...paths,...links];
-    //   console.log(paths, links)
-    //   let path = '';
-    //   return paths.map((state, index) => {
-    //     path += `/${state}`;
-    //     const label = state.charAt(0).toUpperCase() + state.slice(1);
-    //     return {
-    //       label,
-    //       path,
-    //     };
-    //   });
-    // };
     const paths = decodeURIComponent(location.state).split('/').filter(Boolean);
     const links = location.pathname.split('/').filter(Boolean);
     const generateCrumbs = (paths: string[], labels: string[]): { path: string, label: string }[] => {

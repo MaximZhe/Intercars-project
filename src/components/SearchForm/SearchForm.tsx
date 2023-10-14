@@ -20,7 +20,7 @@ const initialStateResultCity = {
     }
 }
 
-interface ICityDataProps {
+export interface ICityDataProps {
     Result: [
         {
             Id: number,
@@ -33,7 +33,7 @@ interface ICityDataProps {
     ],
     Error: null
 }
-interface IFetchDataRoutes {
+export interface IFetchDataRoutes {
     SearchId?: string,
     CityDeparture: number,
     CityArrival: number,
@@ -41,9 +41,8 @@ interface IFetchDataRoutes {
     Carriers?: number[],
     IsDynamic?: boolean,
     Lang?: string
-
 }
-interface IRouteData {
+export interface IRouteData {
     Result: {
         CarrierRoutes: [],
         CityArrival: number,
@@ -57,7 +56,8 @@ interface IRouteData {
     Error: null
 }
 const SearchForm = ({ className }: { className: string }) => {
-
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const [cityDepartureValue, setCityDepartureValue] = useState<string>('');
     const [cityArrivalValue, setCityArrivalValue] = useState<string>('');
     const [cityDepartureData, setCityDepartureData] = useState<ICityDataProps>({
@@ -68,31 +68,18 @@ const SearchForm = ({ className }: { className: string }) => {
         Result: [initialStateResultCity],
         Error: null
     });
-    const [routeData, setRouteData] = useState<IRouteData>({
-        Result: {
-            CarrierRoutes: [],
-            CityArrival: 0,
-            CityDeparture: 0,
-            Date: '',
-            Id: '',
-            IsActive: false,
-            IsDynamic: false,
-            SaveDate: ''
-        },
-        Error: null
-    })
-
-    
     const TodayDate = new Date();
     const defaultDate = moment(TodayDate).format('DD.MM.YYYY');
     const defaultNextDate = moment(TodayDate).add(1, 'd').format('DD.MM.YYYY');
 
-
-    const [date, setDate] = useState(defaultDate)
-    const [valueDateFetchFormat, setValueDateFetchFormat] = useState(date)
+    const [date, setDate] = useState(defaultDate);
     const [isCalendarShow, setCalendarShow] = useState(false)
     const [isButtonClicked, setButtonClicked] = useState(false);
 
+    const formatedDateFetch = (date:any) => {
+        const formetedDate = moment(date, 'DD.MM.YYYY').format('YYYY-MM-DD');
+        return formetedDate
+    }
     const handleDepartureChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setCityDepartureValue(e.target.value);
     };
@@ -103,14 +90,9 @@ const SearchForm = ({ className }: { className: string }) => {
 
     const handleDateChange = (selectedDate: any) => {
         const newDate = moment(selectedDate).format('DD.MM.YYYY');
-        const newDateFormatFetch = moment(selectedDate).format('YYYY-MM-DD');
         setDate(newDate);
-        setValueDateFetchFormat(newDateFormatFetch)
         setCalendarShow(prevState => !prevState);
-        console.log(newDate)
     };
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
     useEffect(() => {
         const fetchCityDeparture = async (cityDeparture: string) => {
             try {
@@ -150,17 +132,19 @@ const SearchForm = ({ className }: { className: string }) => {
         }
     }, [cityArrivalValue, cityDepartureValue])
     const fetchData = async () => {
+        const newDateFormated = formatedDateFetch(date);
         try {
             const datas: IFetchDataRoutes = {
                 CityDeparture: cityDepartureData.Result[0].Id,
                 CityArrival: cityArrivalData.Result[0].Id,
-                Date: valueDateFetchFormat,
+                Date: newDateFormated,
                 IsDynamic: true,
             };
             console.log(datas)
             const response = await axios.post('/api/v1/routes/search', datas);
             const dat = response.data;
-            setRouteData(dat);
+            dispatch(setDataRoute(dat));
+            navigate('/Home/list-result-routes', { state: 'Главная/Поиск билетов' });
         } catch (error) {
            
             console.error('Ошибка при отправке данных на сервер:', error);
@@ -174,41 +158,6 @@ const SearchForm = ({ className }: { className: string }) => {
         fetchData();
         setButtonClicked(false);
     }
-
-    useEffect(() => {
-        if (routeData.Result.IsActive) {
-            const fetchDynamicRoutes = async (id: string) => {
-                try {
-                    const da = {
-                        "SearchId": id,
-                    };
-
-                    const response = await axios.post('/api/v1/routes/search', da);
-                    const dat = response.data;
-                    console.log(dat)
-                    setRouteData(dat);
-
-                    if (!dat.Result.IsActive) {
-                        console.log(dat.Result.IsActive)
-                        clearInterval(timer);
-                        dispatch(setDataRoute(dat));
-                        navigate('/Home/list-result-routes', { state: 'Главная/Поиск билетов' });
-                    }
-
-                } catch (error) {
-                    console.error('Ошибка при отправке данных на сервер:', error);
-                }
-            };
-
-            const timer = setInterval(async () => {
-                await fetchDynamicRoutes(routeData.Result.Id);
-            }, 2000);
-
-            return () => {
-                clearInterval(timer);
-            };
-        }
-    }, [routeData]);
     const handleSubmit = () => {
         setButtonClicked(true);
     };
@@ -278,7 +227,6 @@ const SearchForm = ({ className }: { className: string }) => {
 
                     <div className='form-search__sample'>
                         <p className='form-search__text'>Например:</p>
-
                         <button className='form-search__btn' type='button' onClick={() => setDate(defaultDate)}>{defaultDateForm.Today}</button>
                         <button className='form-search__btn' type='button' onClick={() => setDate(defaultNextDate)}>{defaultDateForm.Tomorrow}</button>
                     </div>
@@ -290,15 +238,12 @@ const SearchForm = ({ className }: { className: string }) => {
                             />
                         </div>
                         : null}
-
                 </div>
                 <div className='form-search__wrapper'>
-                    <button className='form-search__btn-submit' type='button' onClick={handleSubmit}>Найти билеты</button>
+                    <button  className='form-search__btn-submit' type='button' onClick={handleSubmit}>Найти билеты</button>
                 </div>
-
             </form>
         </>
-
     );
 };
 

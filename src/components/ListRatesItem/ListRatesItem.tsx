@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Button from '../UI/Button/Button';
 import arrow from '../../assets/icons/Arrow static blue.svg';
 
@@ -7,15 +7,16 @@ import './ListRatesItem.scss';
 import { WindowScreenUser } from '../../utils/windowScreen';
 import { SwitchClassImg } from '../../utils/classStyleTranfer';
 
-import { IItemRoutes, ITariffData } from '../../types/types';
+import { IItemRoutes } from '../../types/types';
 import ListItemIcons from '../ListItemIcons/ListItemIcons';
-import moment from 'moment';
 import { formatedDate } from '@/utils/formatedDateRates';
 
 interface ItemRatesProps {
   data: IItemRoutes;
   sortedPrices: number[];
 }
+
+
 const ListRatesItem: FC<ItemRatesProps> = ({ data, sortedPrices }) => {
 
   const width = WindowScreenUser()
@@ -23,7 +24,7 @@ const ListRatesItem: FC<ItemRatesProps> = ({ data, sortedPrices }) => {
   const transferStart = 0;
   const transferEnd = 0;
   const spentClassBackground = SwitchClassImg(width, transfer);
-  console.log(sortedPrices[0])
+  const [isToggleDetailsComponent, setIsToggleDetailsComponent] = useState(false)
   const formatedPrice = (price: number) => {
     return Math.floor(price);
   }
@@ -76,37 +77,41 @@ const ListRatesItem: FC<ItemRatesProps> = ({ data, sortedPrices }) => {
           </div>
         </div>
         <div className='list-item-details'>
-          <button type='button' className='list-item-details__btn'>
+          <button type='button' className={`list-item-details__btn ${isToggleDetailsComponent ? 'active' : ''}`}
+            onClick={() => setIsToggleDetailsComponent(prev => !prev)}>
             Детали маршрута
             <img src={arrow} className='list-item-details__icon' alt='' />
           </button>
           {data.BusOptions != undefined ? <ListItemIcons options={data.BusOptions} /> : null}
 
         </div>
-        <div className='list-item-details-component'>
-          <div className='list-item-details-component__list'>
-            {data.AllStops.map((item) => (
-              <div key={item.TimeArrive} className={`list-item-details-component__item ${transferStart !== 0 ? 'start-transfer' : ''} ${transferEnd !== 0 ? 'end-transfer' : ''}`}>
-                <div className='list-item-details-component__data'>
-                  <p className='list-item-details-component__time'>
-                    {item.TimeArrive}
-                  </p>
-                  <p className='list-item-details-component__date'>
-                    {formatedDate(item.DateArrive)}
-                  </p>
+        {isToggleDetailsComponent ?
+          <div className='list-item-details-component'>
+            <div className='list-item-details-component__list'>
+              {data.AllStops.map((item) => (
+                <div key={item.TimeArrive} className={`list-item-details-component__item ${transferStart !== 0 ? 'start-transfer' : ''} ${transferEnd !== 0 ? 'end-transfer' : ''}`}>
+                  <div className='list-item-details-component__data'>
+                    <p className='list-item-details-component__time'>
+                      {item.TimeArrive}
+                    </p>
+                    <p className='list-item-details-component__date'>
+                      {formatedDate(item.DateArrive)}
+                    </p>
+                  </div>
+                  <div className='list-item-details-component__adress'>
+                    <p className='list-item-details-component__city'>
+                      {item.City}
+                    </p>
+                    <p className='list-item-details-component__street'>
+                      {item.Name}
+                    </p>
+                  </div>
                 </div>
-                <div className='list-item-details-component__adress'>
-                  <p className='list-item-details-component__city'>
-                    {item.City}
-                  </p>
-                  <p className='list-item-details-component__street'>
-                    {item.Name}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          </div> :
+          null}
+
       </div>
       <div className='list-item-order'>
         <div className='list-item-offer'>

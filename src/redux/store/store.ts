@@ -7,7 +7,7 @@ import singleItemSalesReduser from '../slice/singleItemSalesSlice';
 import dataRouteReduser from '../slice/getRoutesSlice';
 import cityDepartureSlice from "../slice/cityDepartureSlice";
 import cityArrivalSlice from '../slice/cityArrivalSlice';
-
+import cityFormDataReduser from "../slice/cityIdFormSlice";
 const rootReduser = combineReducers({
     widthWindowReduser,
     languageReduser,
@@ -15,7 +15,7 @@ const rootReduser = combineReducers({
     sliderItemsReduser,
     singleItemSalesReduser,
     dataRouteReduser,
-
+    cityFormDataReduser,
 })
 
 export const setupStore = () => {

@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SocialButtons from '../UI/SocialButtons/SocialButtons';
 import Application from './Application/Application';
 import './Footer.scss';
@@ -9,20 +9,20 @@ import PaymentOption from '../UI/PaymentOption/PaymentOption';
 import ButtonRoutes from '../UI/Button/ButtonRoutes/ButtonRoutes';
 import EmailContacts from '../ContactsItemsLinks/EmailContacts.scss/EmailContacts';
 import PhoneContacts from '../ContactsItemsLinks/PhoneContacts/PhoneContacts';
-import { useAppSelector } from '@/hooks/redux';
+
 interface IRoutesList {
     routes: IRouteItem[],
 }
 
 const Footer: FC<IRoutesList> = ({ routes }) => {
+    const location = useLocation();
     const [isOpenRoutes, setIsOpenRoutes] = useState(false);
     const [isOpenInfo, setIsOpenInfo] = useState(false);
-    const { dataRoute } = useAppSelector(state => state.dataRouteReduser);
-    console.log(dataRoute.Result.IsActive)
+    
     return (
         <footer className="footer">
             <div className='container-fluid'>
-                {dataRoute.Result.IsActive === true ? <Application /> : null}
+                {location.pathname === '/Home/list-result-routes' ? null : <Application />}
                 
                 <div className='footer__wrapper'>
                     <div className='footer__top'>
