@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect,} from 'react';
 
-import { Map, Placemark,Polyline, YMaps, useYMaps, withYMaps } from '@pbe/react-yandex-maps';
+import { Map,Polyline, YMaps,  } from '@pbe/react-yandex-maps';
 
 interface MapProps {
   ymaps: any;

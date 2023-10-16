@@ -4,7 +4,7 @@ import AppRoute from './components/AppRoute/AppRoute'
 import { WindowScreenUser } from './utils/windowScreen';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
-import { setWidthWindow } from './redux/slice/widthWindowSlice';
+
 
 function App() {
   const { widthWindow } = useAppSelector(state => state.widthWindowReduser);

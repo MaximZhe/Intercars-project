@@ -1,10 +1,9 @@
-import { locale } from 'moment';
-import React from 'react';
-import { Link, useLocation, useMatch, useNavigate } from 'react-router-dom';
+
+import { Link, useLocation } from 'react-router-dom';
 
 const Breadcrumbs = () => {
     const location = useLocation();
-    const salesMatch = useMatch(`${location.state}`);
+    
     const paths = decodeURIComponent(location.state).split('/').filter(Boolean);
     const links = location.pathname.split('/').filter(Boolean);
     const generateCrumbs = (paths: string[], labels: string[]): { path: string, label: string }[] => {

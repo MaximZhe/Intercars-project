@@ -1,6 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { getTotalPageCount } from "../../utils/countPage";
+import { createSlice} from "@reduxjs/toolkit";
+
 import { ITariffData } from '../../types/types';
 
 interface DataRouteState {

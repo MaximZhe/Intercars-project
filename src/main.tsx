@@ -11,7 +11,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 const store = setupStore();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <BrowserRouter>
+    <BrowserRouter >
         <YMaps query={{apikey:'4085e0a8-92c5-498b-8730-25f196bc54ea'}}>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persist}>

@@ -2,14 +2,11 @@ import ButtonRoutes from '@/components/UI/Button/ButtonRoutes/ButtonRoutes';
 import { IItemSalesPageProps } from '@/types/types';
 import moment from 'moment';
 import './ItemSalesPage.scss';
-import { useParams } from 'react-router-dom';
-import { setDataItem } from '@/redux/slice/singleItemSalesSlice';
-import { useAppDispatch } from '@/hooks/redux';
+
 import { formatedDate } from '@/utils/formatedDateRates';
 
 
 const ItemSalesPage = ({dataItem} : {dataItem: IItemSalesPageProps} ) => {
-    const dispatch = useAppDispatch()
     const defaultDate = moment(dataItem.date).format('DD MM YYYY');
     const newDate = formatedDate(defaultDate)
     const newDateStart = newDate.slice(0, -5);
@@ -32,7 +29,7 @@ const ItemSalesPage = ({dataItem} : {dataItem: IItemSalesPageProps} ) => {
             Старт акции {newDateStart} в 11:00
             </p>
             <ButtonRoutes 
-            to={`/Home/promos/${dataItem.id}`} 
+            to={`/Intercars-project/promos/${dataItem.id}`} 
             state={`Главная/Акции/${encode}`} 
             title={'Подробнее'} 
             className={'sales-item__more'}

@@ -1,15 +1,15 @@
 import { FC, useEffect, useState } from 'react';
 import ListRatesItem from '../ListRatesItem/ListRatesItem';
 import './ListRates.scss';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { useAppSelector } from '@/hooks/redux';
 import SearchForm, { IRouteData } from '../SearchForm/SearchForm';
 import Breadcrumbs from '../UI/Breadcrumbs/Breadcrumbs';
 import axios from 'axios';
 import { IItemCarrierRoutes, IItemRoutes } from '@/types/types';
 import ListRatesFilterButtons from '../ListRatesFilterButtons/ListRatesFilterButtons';
-import moment from 'moment';
+
 import { useMatchMedia } from '@/hooks/useMatchMedia';
-import { setStoregeRoute } from '../../redux/slice/storegeDataRoute';
+// import { setStoregeRoute } from '../../redux/slice/storegeDataRoute';
 import { GridLoader } from 'react-spinners';
 
 export interface IRoute {
@@ -17,11 +17,11 @@ export interface IRoute {
 }
 const ListRates: FC = () => {
 
-  const { isMobile, isTablet, isDesktop } = useMatchMedia();
+  const { isMobile} = useMatchMedia();
 
-  const formatedPrice = (price: number) => {
-    return Math.floor(price);
-  }
+  // const formatedPrice = (price: number) => {
+  //   return Math.floor(price);
+  // }
   const [routeData, setRouteData] = useState<IRouteData>({
     Result: {
       CarrierRoutes: [],
@@ -35,9 +35,9 @@ const ListRates: FC = () => {
     },
     Error: null
   })
-  const dispatch = useAppDispatch()
+
  const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState("#0243A6");
+  
   const [routes, setRoutes] = useState<IItemRoutes[]>([]);
   const [isSortPrice, setIsSortPrice] = useState(false);
   const [isSortTimeDepart, setIsSortTimeDepart] = useState(false);
@@ -97,7 +97,7 @@ console.log(routeData.Result.IsActive)
       console.log("Данные не найдены в localStorage");
     }
   }, []);
-  const routesArray = routes.map((item: { Routes: any; }) => item.Routes).flat();
+  // const routesArray = routes.map((item: { Routes: any; }) => item.Routes).flat();
   const sortedRoutesPriceBest = (routes: any[]) => {
     return routes.map(item => item.Price[2].Ptar).sort((a, b) => a - b);
   }
@@ -145,10 +145,10 @@ console.log(routeData.Result.IsActive)
       setRoutes(newArrayRoutes);
     }
   }
-  function formatedTime(time: string) {
-    const newTime = moment(time, 'HH:mm').format('HH');
-    return parseInt(newTime)
-  }
+  // function formatedTime(time: string) {
+  //   const newTime = moment(time, 'HH:mm').format('HH');
+  //   return parseInt(newTime)
+  // }
   const sortedRoutesTimeArrive = () => {
     setIsSortTimeArrive(prev => !prev)
     if (isSortTimeArrive) {
@@ -215,7 +215,7 @@ console.log(routeData.Result.IsActive)
           </div>
 
           <div className='list'>
-            <GridLoader color={color} loading={loading} size={10}/>
+            <GridLoader color={'#0243A6'} loading={loading} size={10}/>
             {!loading && routes.length < 1 ? <p>Нет подходящих рейсов, выберите другую дату или маршрут</p> : null}
             {routes.map((data) => (
               <ListRatesItem key={data.Id} data={data} sortedPrices={sortedPrices} />

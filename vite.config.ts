@@ -16,7 +16,7 @@ export default defineConfig({
   },
  
   // base: "/Intercars-project/",
-  base: "/Home/",
+  base: "/Intercars-project/",
   plugins: [react(),svgr()],
   server: {
     host: true,

@@ -22,7 +22,7 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
     return (
         <footer className="footer">
             <div className='container-fluid'>
-                {location.pathname === '/Home/list-result-routes' ? null : <Application />}
+                {location.pathname === '/Intercars-project/list-result-routes' ? null : <Application />}
                 
                 <div className='footer__wrapper'>
                     <div className='footer__top'>
@@ -73,12 +73,12 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                             <nav className='footer-nav__wrapper'>
                                 <ul className='footer__list  footer-nav__menu'>
                                     <li className='footer-nav__item'>
-                                        <Link to='/Home'  className='footer-nav__link'>
+                                        <Link to='/Intercars-project'  className='footer-nav__link'>
                                             Главная
                                         </Link>
                                     </li>
                                     <li className='footer-nav__item'>
-                                        <Link to='/Home/news' state={'Главная/Новости'} className='footer-nav__link'>
+                                        <Link to='/Intercars-project/news' state={'Главная/Новости'} className='footer-nav__link'>
                                             Новости
                                         </Link>
                                     </li>
@@ -88,7 +88,7 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                                         </Link>
                                     </li>
                                     <li className='footer-nav__item'>
-                                        <Link to='/Home/promos' state={'Главная/Акции'} className='footer-nav__link'>
+                                        <Link to='/Intercars-project/promos' state={'Главная/Акции'} className='footer-nav__link'>
                                             Акции
                                         </Link>
                                     </li>
@@ -98,17 +98,17 @@ const Footer: FC<IRoutesList> = ({ routes }) => {
                                         </Link>
                                     </li>
                                     <li className='footer-nav__item'>
-                                        <Link to='/Home/rules' state={'Главная/Правила для пассажиров'} className='footer-nav__link'>
+                                        <Link to='/Intercars-project/rules' state={'Главная/Правила для пассажиров'} className='footer-nav__link'>
                                             Правила
                                         </Link>
                                     </li>
                                     <li className='footer-nav__item'>
-                                        <Link to='/Home/pay' className='footer-nav__link'>
+                                        <Link to='/Intercars-project/pay' className='footer-nav__link'>
                                             Как оплатить
                                         </Link>
                                     </li>
                                     <li className='footer-nav__item'>
-                                        <Link to='/Home/contacts' state={'Главная/Контакты'} className='footer-nav__link'>
+                                        <Link to='/Intercars-project/contacts' state={'Главная/Контакты'} className='footer-nav__link'>
                                             Контакты
                                         </Link>
                                     </li>

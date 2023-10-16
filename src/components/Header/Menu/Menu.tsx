@@ -11,7 +11,7 @@ interface IMenuProps{
 }
 
 const Menu:FC<IMenuProps> = ({className}) => {
-    const { widthWindow } = useAppSelector(state => state.widthWindowReduser);
+   
     const [isOpenDropdown, setIsOpenDropdown] = useState(false);
     const { language } = useAppSelector(state => state.languageReduser);
     const { isShow } = useAppSelector(state => state.stateMobileMenuReduser);
@@ -35,10 +35,10 @@ const Menu:FC<IMenuProps> = ({className}) => {
                         <div className='menu-dropdown'
                             onMouseEnter={() => setIsOpenDropdown(true)}
                             onMouseLeave={() => setIsOpenDropdown(false)}>
-                            <Link to='/Home/promos' state={'Главная/Акции'} className='menu-dropdown__link'>
+                            <Link to='/Intercars-project/promos' state={'Главная/Акции'} className='menu-dropdown__link'>
                                 Акции
                             </Link>
-                            <Link to='/Home/news' state={'Главная/Новости'} className='menu-dropdown__link'>
+                            <Link to='/Intercars-project/news' state={'Главная/Новости'} className='menu-dropdown__link'>
                                 Новости
                             </Link>
                             <Link to='' className='menu-dropdown__link'>
@@ -47,8 +47,8 @@ const Menu:FC<IMenuProps> = ({className}) => {
                         </div>
                     </div>
                     <Link className='menu__item' to='/'>Сотрудничество</Link>
-                    <Link className='menu__item' to='/Home/pay'>Оплата</Link>
-                    <Link className='menu__item' to='/Home/rules' state={'Главная/Правила для пассажиров'}>Правила</Link>
+                    <Link className='menu__item' to='/Intercars-project/pay'>Оплата</Link>
+                    <Link className='menu__item' to='/Intercars-project/rules' state={'Главная/Правила для пассажиров'}>Правила</Link>
                 </nav>
                 
                     <div className="dropdown-menu dropdown-menu--mobail">

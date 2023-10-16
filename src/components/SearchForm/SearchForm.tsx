@@ -144,7 +144,7 @@ const SearchForm = ({ className }: { className: string }) => {
             const response = await axios.post('/api/v1/routes/search', datas);
             const dat = response.data;
             dispatch(setDataRoute(dat));
-            navigate('/Home/list-result-routes', { state: 'Главная/Поиск билетов' });
+            navigate('/Intercars-project/list-result-routes', { state: 'Главная/Поиск билетов' });
         } catch (error) {
            
             console.error('Ошибка при отправке данных на сервер:', error);

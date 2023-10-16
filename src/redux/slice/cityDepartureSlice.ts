@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCityArrival } from '../actions/fetchCityArrival';
 import { fetchCityDeparture} from '../actions/fetchCityDeparture';
 
 interface IState {

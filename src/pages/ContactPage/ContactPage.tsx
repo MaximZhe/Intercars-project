@@ -3,14 +3,14 @@ import RouteItem from '@/components/RouteItem/RouteItem';
 import Breadcrumbs from '@/components/UI/Breadcrumbs/Breadcrumbs';
 import ButtonRoutes from '@/components/UI/Button/ButtonRoutes/ButtonRoutes';
 import { sliderRoutesInternational } from '@/constant/constant';
-import React from 'react';
+
 import './ContactPage.scss';
 import PhoneContacts from '@/components/ContactsItemsLinks/PhoneContacts/PhoneContacts';
 import EmailContacts from '@/components/ContactsItemsLinks/EmailContacts.scss/EmailContacts';
 import { Map, Placemark } from '@pbe/react-yandex-maps';
-import CustomBalloonLayout from '@/components/UI/CustomBalloonLayout/CustomBalloonLayout';
+// import CustomBalloonLayout from '@/components/UI/CustomBalloonLayout/CustomBalloonLayout';
 
-import  MapCity  from '../../assets/icons/cityIcon.svg';
+// import  MapCity  from '../../assets/icons/cityIcon.svg';
 import CustomBalloon from '../../assets/icons/newIconMap.svg'
 const ContactPage = () => {
    

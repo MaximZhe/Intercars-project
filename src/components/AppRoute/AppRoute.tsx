@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate} from 'react-router-dom'
+import { Routes, Route} from 'react-router-dom'
 import HomePage from '../../pages/HomePage/HomePage';
 import SalesPage from '../../pages/SalesPage/SalesPage';
 import RulesPage from '../../pages/RulesPage/RulesPage';
@@ -9,7 +9,6 @@ import NewsPage from '@/pages/NewsPage/NewsPage';
 import SingleNewsPage from '@/pages/SingleNewsPage/SingleNewsPage';
 import ContactPage from '@/pages/ContactPage/ContactPage';
 import RouteDescriptionPage from '@/pages/RouteDescriptionPage/RouteDescriptionPage';
-import ListRates from '../ListRates/ListRates';
 import SearchResultPage from '@/pages/SearchResultPage/SearchResultPage';
 
 
@@ -17,7 +16,7 @@ import SearchResultPage from '@/pages/SearchResultPage/SearchResultPage';
 const AppRoute = () => {
     return (
         <Routes>
-          <Route path="/Home/" element={<AppLayout /> }>
+          <Route path="/Intercars-project/" element={<AppLayout /> }>
           
             <Route index element={<HomePage />} />
             <Route path='promos' element={<SalesPage />} />
