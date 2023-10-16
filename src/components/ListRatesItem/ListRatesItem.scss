@@ -178,15 +178,12 @@
 .list-item-icons {
   display: flex;
   align-items: center;
-
+  flex-wrap: wrap;
+  gap:0 5px;
   &__item {
     max-width: 24px;
     height: auto;
     width: 100%;
-    margin-left: 8px;
-    &:first-child {
-      margin-left: 0;
-    }
   }
 }
 .list-item-order {
@@ -562,14 +559,12 @@
   .list-item-icons {
     display: flex;
     align-items: center;
+    gap:5px;
     &__item {
       max-width: 24px;
       height: auto;
       width: 100%;
-      margin-left: 8px;
-      &:first-child {
-        margin-left: 0;
-      }
+      
     }
   }
   .list-item-offer {
