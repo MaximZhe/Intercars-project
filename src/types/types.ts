@@ -1,5 +1,4 @@
 export interface ITariffData {
-  map(arg0: (item: any) => any): unknown;
   Result: {
     IsActive: boolean;
     CarrierRoutes: IItemCarrierRoutes[];
@@ -50,7 +49,7 @@ export interface IItemNewsPageProps {
 
 
 
-interface IItemStop {
+export interface IItemStop {
   DateArrive: string;
   TimeArrive: string;
   City: string;
@@ -66,26 +65,26 @@ export interface IItemBusOptions {
   Description?: null | string;
   Link: null | string;
 }
-interface IItemFullBusPlaces {
+export interface IItemFullBusPlaces {
   Seat: number;
   IsFree: boolean;
   Row: number;
   Col: number;
   Floor: number;
 }
-interface IItemPrice {
+export interface IItemPrice {
   Ptar?: number;
   Etar?: number;
   Dtar?: number;
   Currency?: number;
   CurrencyName?: string;
 }
-interface IItemBaggagePrices {
+export interface IItemBaggagePrices {
   Currency?: number;
   CurrencyName?: string;
   Value?: number;
 }
-interface IItemRoutesProps {
+export interface IItemRoutesProps {
   GuidIdentityNumber?: null;
   City1?: {
     Id: number;

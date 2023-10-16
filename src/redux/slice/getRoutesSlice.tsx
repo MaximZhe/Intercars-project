@@ -20,9 +20,7 @@ interface DataRouteState {
         IsDynamic: false,
       },
       Error: null,
-      map: function (arg0: (item: any) => any): unknown {
-        throw new Error("Function not implemented.");
-      }
+     
     },
   };
 
